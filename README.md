@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="YOUR_LIVE_DEMO_URL">🌐 Live Demo</a>
+  <a href="https://nexa-social-arena.vercel.app/">🌐 Live Demo</a>
   &nbsp; • &nbsp;
   <a href="https://github.com/23-shivamsingh/NEXA">💻 Source Code</a>
 </p>
@@ -44,7 +44,7 @@ and replaces these primitives with a new interaction model based on:
 # 📸 Product Preview
 
 <p align="center">
-  <img src="docs/screenshots/home.png" alt="NEXA Home / Orbit" width="100%">
+  <img src="docs/screenshots/orbit.png" alt="NEXA Home / Orbit" width="100%">
 </p>
 
 <p align="center">
