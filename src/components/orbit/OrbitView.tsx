@@ -249,104 +249,38 @@ export const OrbitView: React.FC = () => {
       <div className="absolute inset-0 bg-space-mesh opacity-80 pointer-events-none" />
 
       {/* Top Floating Orbit Header */}
-      <div className="relative z-20 mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2.5 px-4 pt-4 sm:px-6">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] px-3.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 shadow-xs">
-            <Radio className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
-            <span className="font-bold text-slate-900 dark:text-white">
-              {filteredMoments.length}
-            </span>
-            <span className="text-slate-600 dark:text-slate-400 font-medium">
-              {isMobile ? 'nearby' : 'moments in orbit'}
-            </span>
+      <div className="relative z-20 mx-auto flex max-w-7xl flex-col gap-3 px-4 pt-4 sm:px-6">
+        {/* Top Row: Node Count & View Toggles */}
+        <div className="flex w-full items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] px-3.5 py-1.5 text-xs text-slate-800 dark:text-slate-200 shadow-xs">
+              <Radio className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
+              <span className="font-bold text-slate-900 dark:text-white">
+                {filteredMoments.length}
+              </span>
+              <span className="text-slate-600 dark:text-slate-400 font-medium">
+                {isMobile ? 'nearby' : 'moments in orbit'}
+              </span>
+            </div>
+
+            {/* Pause / Play auto-spin */}
+            <Tooltip content={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}>
+              <button
+                onClick={() => setIsRotating(!isRotating)}
+                aria-label={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}
+                className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs transition-all icon-btn focus-ring cursor-pointer shrink-0 ${
+                  isRotating
+                    ? 'border-cyan-500 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold shadow-xs'
+                    : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <RotateCw className={`h-3.5 w-3.5 ${isRotating ? 'animate-spin-slow' : ''}`} />
+              </button>
+            </Tooltip>
           </div>
 
-          {/* Pause / Play auto-spin */}
-          <Tooltip content={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}>
-            <button
-              onClick={() => setIsRotating(!isRotating)}
-              aria-label={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}
-              className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs transition-all icon-btn focus-ring cursor-pointer ${
-                isRotating
-                  ? 'border-cyan-500 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold shadow-xs'
-                  : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <RotateCw className={`h-3.5 w-3.5 ${isRotating ? 'animate-spin-slow' : ''}`} />
-            </button>
-          </Tooltip>
-        </div>
-
-        {/* Social Energy Selector */}
-        <div className="hidden lg:flex items-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] p-1 shadow-xs">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-2.5 flex items-center gap-1">
-            <Sparkles className="h-3 w-3 text-cyan-500" />
-            Energy:
-          </span>
-          {SOCIAL_ENERGIES.map((se) => {
-            const isSelected = socialEnergy === se.energy;
-            return (
-              <Tooltip key={se.energy} content={se.description}>
-                <button
-                  onClick={() => setSocialEnergy(se.energy)}
-                  className={`chip-interactive focus-ring flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold cursor-pointer ${
-                    isSelected
-                      ? 'bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-white/[0.04]'
-                  }`}
-                >
-                  <span>{se.icon}</span>
-                  <span>{se.label}</span>
-                </button>
-              </Tooltip>
-            );
-          })}
-        </div>
-
-        {/* Right Actions: Frequencies, Drift, Surprise, Session Memory & View Switcher */}
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {/* Frequencies Tuning */}
-          <button
-            onClick={() => toggleFrequencies(true)}
-            title="Tune Frequency Weights (Resonance Filter)"
-            className="btn-press focus-ring flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-cyan-500 dark:hover:border-cyan-400 shadow-xs cursor-pointer"
-          >
-            <Sliders className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
-            <span className="hidden sm:inline">Frequencies</span>
-          </button>
-
-          {/* Drift Mode */}
-          <button
-            onClick={() => openDrift(true)}
-            title="Drift: Wander through serendipitous human signals"
-            className="btn-press focus-ring flex items-center gap-1.5 rounded-full border border-purple-300 dark:border-purple-500/40 bg-purple-50 dark:bg-purple-950/40 px-3 py-1.5 text-xs font-semibold text-purple-900 dark:text-purple-200 hover:bg-purple-100 dark:hover:bg-purple-950/60 shadow-xs cursor-pointer"
-          >
-            <Compass className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
-            <span className="hidden sm:inline">Drift</span>
-          </button>
-
-          {/* Surprise Me Button */}
-          <button
-            onClick={triggerSurpriseMe}
-            title="Surprise Me: Discover an unexpected moment outside your dominant habits"
-            className="btn-press focus-ring flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-500/40 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 text-xs font-semibold text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-950/60 shadow-xs cursor-pointer"
-          >
-            <Shuffle className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
-            <span className="hidden md:inline">Surprise Me</span>
-          </button>
-
-          {/* Session Pulse / Reflection */}
-          <button
-            onClick={() => toggleSessionMemory(true)}
-            title="Session Pulse: Mindful reflection on your non-extractive social journey"
-            className="btn-press focus-ring flex items-center gap-1.5 rounded-full border border-emerald-300 dark:border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 text-xs font-semibold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100 dark:hover:bg-emerald-950/60 shadow-xs cursor-pointer"
-          >
-            <Heart className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
-            <span className="hidden lg:inline">Session Pulse</span>
-          </button>
-
           {/* View Switcher: Orbit Canvas vs Grid */}
-          <div className="flex items-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] p-1 shadow-xs ml-1">
+          <div className="flex shrink-0 items-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] p-1 shadow-xs ml-auto">
             <button
               onClick={() => setViewStyle('orbit')}
               title="Spatial Orbit"
@@ -356,7 +290,7 @@ export const OrbitView: React.FC = () => {
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <Radio className="h-3.5 w-3.5" />
+              <Radio className="h-3.5 w-3.5 shrink-0" />
               <span className="hidden sm:inline">Orbit</span>
             </button>
             <button
@@ -368,10 +302,81 @@ export const OrbitView: React.FC = () => {
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <LayoutGrid className="h-3.5 w-3.5" />
+              <LayoutGrid className="h-3.5 w-3.5 shrink-0" />
               <span className="hidden sm:inline">Grid</span>
             </button>
           </div>
+        </div>
+
+        {/* Second Row: Filters, Drift, Surprise, Pulse */}
+        <div className="flex w-full items-center gap-2 overflow-x-auto no-scrollbar pb-2 sm:pb-0">
+          {/* Social Energy Selector */}
+          <div className="flex shrink-0 items-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] p-1 shadow-xs">
+            <span className="text-[10px] hidden sm:flex font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 px-2.5 items-center gap-1">
+              <Sparkles className="h-3 w-3 text-cyan-500 shrink-0" />
+              Energy:
+            </span>
+            {SOCIAL_ENERGIES.map((se) => {
+              const isSelected = socialEnergy === se.energy;
+              return (
+                <Tooltip key={se.energy} content={se.description}>
+                  <button
+                    onClick={() => setSocialEnergy(se.energy)}
+                    className={`chip-interactive focus-ring flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold cursor-pointer shrink-0 ${
+                      isSelected
+                        ? 'bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs'
+                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <span className="shrink-0">{se.icon}</span>
+                    <span className="hidden sm:inline">{se.label}</span>
+                  </button>
+                </Tooltip>
+              );
+            })}
+          </div>
+
+          <div className="h-4 w-px bg-slate-300 dark:bg-slate-700 shrink-0 mx-1 hidden sm:block" />
+
+          {/* Frequencies Tuning */}
+          <button
+            onClick={() => toggleFrequencies(true)}
+            title="Tune Frequency Weights (Resonance Filter)"
+            className="btn-press shrink-0 focus-ring flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:border-cyan-500 dark:hover:border-cyan-400 shadow-xs cursor-pointer"
+          >
+            <Sliders className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
+            <span>Frequencies</span>
+          </button>
+
+          {/* Drift Mode */}
+          <button
+            onClick={() => openDrift(true)}
+            title="Drift: Wander through serendipitous human signals"
+            className="btn-press shrink-0 focus-ring flex items-center gap-1.5 rounded-full border border-purple-300 dark:border-purple-500/40 bg-purple-50 dark:bg-purple-950/40 px-3 py-1.5 text-xs font-semibold text-purple-900 dark:text-purple-200 hover:bg-purple-100 dark:hover:bg-purple-950/60 shadow-xs cursor-pointer"
+          >
+            <Compass className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400 shrink-0" />
+            <span>Drift</span>
+          </button>
+
+          {/* Surprise Me Button */}
+          <button
+            onClick={triggerSurpriseMe}
+            title="Surprise Me: Discover an unexpected moment outside your dominant habits"
+            className="btn-press shrink-0 focus-ring flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-500/40 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 text-xs font-semibold text-amber-900 dark:text-amber-200 hover:bg-amber-100 dark:hover:bg-amber-950/60 shadow-xs cursor-pointer"
+          >
+            <Shuffle className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+            <span>Surprise Me</span>
+          </button>
+
+          {/* Session Pulse / Reflection */}
+          <button
+            onClick={() => toggleSessionMemory(true)}
+            title="Session Pulse: Mindful reflection on your non-extractive social journey"
+            className="btn-press shrink-0 focus-ring flex items-center gap-1.5 rounded-full border border-emerald-300 dark:border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/40 px-3 py-1.5 text-xs font-semibold text-emerald-900 dark:text-emerald-200 hover:bg-emerald-100 dark:hover:bg-emerald-950/60 shadow-xs cursor-pointer"
+          >
+            <Heart className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <span>Session Pulse</span>
+          </button>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Sparkles,
   Bell,
@@ -12,22 +12,22 @@ import {
   SlidersHorizontal,
   X,
   Keyboard,
-} from 'lucide-react';
-import { useNexaStore } from '../../store/useNexaStore';
-import { Intent } from '../../types';
-import { MobileNavDrawer } from './MobileNavDrawer';
-import { MobileSearchOverlay } from './MobileSearchOverlay';
-import { Tooltip } from './Tooltip';
+} from "lucide-react";
+import { useNexaStore } from "../../store/useNexaStore";
+import { Intent } from "../../types";
+import { MobileNavDrawer } from "./MobileNavDrawer";
+import { MobileSearchOverlay } from "./MobileSearchOverlay";
+import { Tooltip } from "./Tooltip";
 
 const INTENTS: { id: Intent; label: string; icon: string }[] = [
-  { id: 'ALL', label: 'All', icon: '🌌' },
-  { id: 'CREATE', label: 'Create', icon: '⚡' },
-  { id: 'DISCOVER', label: 'Discover', icon: '🧭' },
-  { id: 'CONNECT', label: 'Connect', icon: '🤝' },
-  { id: 'LEARN', label: 'Learn', icon: '🌱' },
-  { id: 'PLAY', label: 'Play', icon: '🎲' },
-  { id: 'HELP', label: 'Help', icon: '🛟' },
-  { id: 'JUST VIBE', label: 'Just Vibe', icon: '🌊' },
+  { id: "ALL", label: "All", icon: "🌌" },
+  { id: "CREATE", label: "Create", icon: "⚡" },
+  { id: "DISCOVER", label: "Discover", icon: "🧭" },
+  { id: "CONNECT", label: "Connect", icon: "🤝" },
+  { id: "LEARN", label: "Learn", icon: "🌱" },
+  { id: "PLAY", label: "Play", icon: "🎲" },
+  { id: "HELP", label: "Help", icon: "🛟" },
+  { id: "JUST VIBE", label: "Just Vibe", icon: "🌊" },
 ];
 
 export const Header: React.FC = () => {
@@ -65,6 +65,7 @@ export const Header: React.FC = () => {
     <>
       <header
         id="nexa-header"
+        style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
         className="sticky top-0 z-40 w-full border-b border-slate-200/80 dark:border-white/[0.07] bg-white/90 dark:bg-[#050814]/90 backdrop-blur-xl transition-colors duration-200"
       >
         {/* =======================================================
@@ -79,23 +80,23 @@ export const Header: React.FC = () => {
           <button
             id="mobile-hamburger-btn"
             onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-            aria-label={isMobileNavOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMobileNavOpen ? "Close menu" : "Open menu"}
             className="flex h-11 w-11 items-center justify-center rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] active:scale-95 transition-all focus-ring cursor-pointer"
           >
             <div className="flex flex-col justify-center items-center w-5 h-5 gap-1.5 pointer-events-none">
               <span
                 className={`h-0.5 w-5 rounded-full bg-current transform transition-all duration-200 ${
-                  isMobileNavOpen ? 'rotate-45 translate-y-2' : ''
+                  isMobileNavOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
                 className={`h-0.5 w-5 rounded-full bg-current transition-all duration-200 ${
-                  isMobileNavOpen ? 'opacity-0' : ''
+                  isMobileNavOpen ? "opacity-0" : ""
                 }`}
               />
               <span
                 className={`h-0.5 w-5 rounded-full bg-current transform transition-all duration-200 ${
-                  isMobileNavOpen ? '-rotate-45 -translate-y-2' : ''
+                  isMobileNavOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
             </div>
@@ -104,7 +105,7 @@ export const Header: React.FC = () => {
           {/* CENTER: NEXA Brand Logo & Wordmark */}
           <button
             id="mobile-brand-logo-btn"
-            onClick={() => setCurrentView('orbit')}
+            onClick={() => setCurrentView("orbit")}
             className="flex items-center gap-1.5 focus-ring rounded-lg p-1 group cursor-pointer"
             title="Return to Orbit"
           >
@@ -130,7 +131,7 @@ export const Header: React.FC = () => {
 
             <button
               id="mobile-header-avatar-btn"
-              onClick={() => setCurrentView('identity')}
+              onClick={() => setCurrentView("identity")}
               className="relative flex h-10 w-10 items-center justify-center rounded-xl transition-transform active:scale-95 focus-ring cursor-pointer"
               title="Your Profile"
               aria-label="Open profile"
@@ -162,7 +163,7 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-3">
             <button
               id="brand-logo-btn"
-              onClick={() => setCurrentView('orbit')}
+              onClick={() => setCurrentView("orbit")}
               className="group flex items-center gap-2 text-left focus-ring rounded-xl p-1 cursor-pointer"
               title="Return to Orbit"
             >
@@ -182,15 +183,17 @@ export const Header: React.FC = () => {
             {/* Quick toggle to Manifesto / Orbit */}
             <button
               id="btn-switch-landing"
-              onClick={() => setCurrentView(currentView === 'landing' ? 'orbit' : 'landing')}
+              onClick={() =>
+                setCurrentView(currentView === "landing" ? "orbit" : "landing")
+              }
               className={`btn-press focus-ring flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs font-medium cursor-pointer ${
-                currentView === 'landing'
-                  ? 'bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04]'
+                currentView === "landing"
+                  ? "bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-500/30 shadow-xs"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04]"
               }`}
             >
               <Compass className="h-3.5 w-3.5" />
-              <span>{currentView === 'landing' ? 'Orbit' : 'About'}</span>
+              <span>{currentView === "landing" ? "Orbit" : "About"}</span>
             </button>
           </div>
 
@@ -216,7 +219,7 @@ export const Header: React.FC = () => {
           {/* Right: Desktop Action Controls */}
           <div className="flex items-center gap-2">
             {/* Keyboard Shortcuts Hint */}
-            <Tooltip content="Shortcuts (?)">
+            <Tooltip side="bottom" content="Shortcuts (?)">
               <button
                 id="shortcuts-help-btn"
                 onClick={() => toggleShortcutsHelp()}
@@ -228,14 +231,25 @@ export const Header: React.FC = () => {
             </Tooltip>
 
             {/* Theme Toggle (Sun / Moon) */}
-            <Tooltip content={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}>
+            <Tooltip
+              side="bottom"
+              content={
+                theme === "dark"
+                  ? "Switch to Light Mode"
+                  : "Switch to Dark Mode"
+              }
+            >
               <button
                 id="theme-toggle-btn"
                 onClick={toggleTheme}
-                aria-label={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                aria-label={
+                  theme === "dark"
+                    ? "Switch to Light Mode"
+                    : "Switch to Dark Mode"
+                }
                 className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.08] icon-btn focus-ring cursor-pointer"
               >
-                {theme === 'dark' ? (
+                {theme === "dark" ? (
                   <Sun className="h-4 w-4 text-amber-300 hover:rotate-45 transition-transform" />
                 ) : (
                   <Moon className="h-4 w-4 text-indigo-600 hover:-rotate-12 transition-transform" />
@@ -244,18 +258,20 @@ export const Header: React.FC = () => {
             </Tooltip>
 
             {/* AI Concierge Trigger */}
-            <button
-              id="ai-concierge-trigger"
-              onClick={() => toggleConcierge()}
-              title="Ask AI Concierge"
-              className="btn-press focus-ring flex h-8 items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 px-2.5 text-xs font-medium text-purple-700 dark:text-purple-300 hover:bg-purple-500/20 cursor-pointer shadow-xs"
-            >
-              <Sparkles className="h-3.5 w-3.5 text-purple-500 dark:text-purple-400" />
-              <span className="inline">Concierge</span>
-            </button>
+            <Tooltip side="bottom" content="AI Concierge (Living Navigator)">
+              <button
+                id="ai-concierge-trigger"
+                onClick={() => toggleConcierge()}
+                aria-label="Ask AI Concierge"
+                className="btn-press focus-ring flex h-8 items-center gap-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 px-2.5 text-xs font-medium text-purple-700 dark:text-purple-300 hover:bg-purple-500/20 cursor-pointer shadow-xs"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-purple-500 dark:text-purple-400" />
+                <span className="inline">Concierge</span>
+              </button>
+            </Tooltip>
 
             {/* Notifications Bell */}
-            <Tooltip content="Notifications">
+            <Tooltip side="bottom" content="Notifications">
               <button
                 id="notifications-bell-btn"
                 onClick={() => toggleNotifications()}
@@ -272,25 +288,34 @@ export const Header: React.FC = () => {
             </Tooltip>
 
             {/* Ghost Mode Toggle */}
-            <Tooltip content={isGhostMode ? 'Ghost Mode Active (Anonymous)' : 'Ghost Mode Inactive (Visible)'}>
+            <Tooltip
+              side="bottom"
+              content={
+                isGhostMode
+                  ? "Ghost Mode Active (Anonymous)"
+                  : "Ghost Mode Inactive (Visible)"
+              }
+            >
               <button
                 id="ghost-mode-toggle"
                 onClick={toggleGhostMode}
                 className={`btn-press focus-ring flex h-8 items-center gap-1 rounded-lg border px-2 text-xs font-medium cursor-pointer ${
                   isGhostMode
-                    ? 'border-cyan-500/50 bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 shadow-xs'
-                    : 'border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/[0.05]'
+                    ? "border-cyan-500/50 bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 shadow-xs"
+                    : "border-slate-200 dark:border-white/10 bg-white dark:bg-white/[0.03] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-white/[0.05]"
                 }`}
               >
                 <Ghost className="h-3.5 w-3.5" />
-                <span className="inline">{isGhostMode ? 'Ghost' : 'Visible'}</span>
+                <span className="inline">
+                  {isGhostMode ? "Ghost" : "Visible"}
+                </span>
               </button>
             </Tooltip>
 
             {/* Orbit View Settings Dropdown */}
-            {currentView === 'orbit' && (
+            {currentView === "orbit" && (
               <div className="relative">
-                <Tooltip content="Orbit Settings">
+                <Tooltip side="bottom" content="Orbit Settings">
                   <button
                     id="orbit-settings-btn"
                     onClick={() => setShowSettingsMenu(!showSettingsMenu)}
@@ -303,27 +328,33 @@ export const Header: React.FC = () => {
 
                 {showSettingsMenu && (
                   <div className="absolute right-0 mt-2 w-52 rounded-2xl border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0c1126] p-3 shadow-xl backdrop-blur-2xl z-50 text-xs animate-in fade-in-0 zoom-in-95 duration-150">
-                    <div className="mb-2 font-semibold text-slate-900 dark:text-white">Orbit Settings</div>
+                    <div className="mb-2 font-semibold text-slate-900 dark:text-white">
+                      Orbit Settings
+                    </div>
                     <div className="space-y-2">
                       <div>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400">Node Density</span>
+                        <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                          Node Density
+                        </span>
                         <div className="mt-1 flex gap-1 rounded-lg bg-slate-100 dark:bg-white/[0.05] p-0.5">
-                          {(['compact', 'balanced', 'deep_space'] as const).map((d) => (
-                            <button
-                              key={d}
-                              onClick={() => {
-                                setOrbitDensity(d);
-                                setShowSettingsMenu(false);
-                              }}
-                              className={`flex-1 rounded-md py-1 text-[10px] font-medium capitalize btn-press focus-ring cursor-pointer ${
-                                orbitDensity === d
-                                  ? 'bg-white dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 shadow-xs'
-                                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                              }`}
-                            >
-                              {d === 'deep_space' ? 'Far' : d}
-                            </button>
-                          ))}
+                          {(["compact", "balanced", "deep_space"] as const).map(
+                            (d) => (
+                              <button
+                                key={d}
+                                onClick={() => {
+                                  setOrbitDensity(d);
+                                  setShowSettingsMenu(false);
+                                }}
+                                className={`flex-1 rounded-md py-1 text-[10px] font-medium capitalize btn-press focus-ring cursor-pointer ${
+                                  orbitDensity === d
+                                    ? "bg-white dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 shadow-xs"
+                                    : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                                }`}
+                              >
+                                {d === "deep_space" ? "Far" : d}
+                              </button>
+                            ),
+                          )}
                         </div>
                       </div>
                       <button
@@ -331,7 +362,9 @@ export const Header: React.FC = () => {
                         className="btn-press focus-ring flex w-full items-center justify-between rounded-lg py-1 px-1.5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-white/[0.04] cursor-pointer"
                       >
                         <span>Radar Sweep</span>
-                        <span className="font-mono text-[10px] font-bold">{showRadarSweep ? 'ON' : 'OFF'}</span>
+                        <span className="font-mono text-[10px] font-bold">
+                          {showRadarSweep ? "ON" : "OFF"}
+                        </span>
                       </button>
 
                       <div className="pt-2 border-t border-slate-100 dark:border-white/10 space-y-1">
@@ -361,15 +394,15 @@ export const Header: React.FC = () => {
             )}
 
             {/* Identity / Profile Avatar */}
-            <Tooltip content="Identity Map & Aura">
+            <Tooltip side="bottom" content="Identity Map & Aura">
               <button
                 id="profile-avatar-btn"
-                onClick={() => setCurrentView('identity')}
+                onClick={() => setCurrentView("identity")}
                 aria-label="Your Identity Map"
                 className={`flex items-center rounded-lg border p-0.5 icon-btn focus-ring cursor-pointer ${
-                  currentView === 'identity'
-                    ? 'border-cyan-500 ring-2 ring-cyan-500/30'
-                    : 'border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20'
+                  currentView === "identity"
+                    ? "border-cyan-500 ring-2 ring-cyan-500/30"
+                    : "border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20"
                 }`}
               >
                 {isGhostMode ? (
@@ -400,12 +433,12 @@ export const Header: React.FC = () => {
               return (
                 <button
                   key={intent.id}
-                  id={`intent-filter-${intent.id.toLowerCase().replace(' ', '-')}`}
+                  id={`intent-filter-${intent.id.toLowerCase().replace(" ", "-")}`}
                   onClick={() => setSelectedIntent(intent.id)}
                   className={`chip-interactive focus-ring flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium cursor-pointer ${
                     isSelected
-                      ? 'bg-cyan-600 dark:bg-cyan-500/20 text-white dark:text-cyan-200 border border-cyan-600 dark:border-cyan-400/40 shadow-xs font-semibold'
-                      : 'bg-white dark:bg-white/[0.02] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/20 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100/70 dark:hover:bg-white/[0.04]'
+                      ? "bg-cyan-600 dark:bg-cyan-500/20 text-white dark:text-cyan-200 border border-cyan-600 dark:border-cyan-400/40 shadow-xs font-semibold"
+                      : "bg-white dark:bg-white/[0.02] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/5 hover:border-slate-300 dark:hover:border-white/20 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100/70 dark:hover:bg-white/[0.04]"
                   }`}
                 >
                   <span className="text-xs">{intent.icon}</span>

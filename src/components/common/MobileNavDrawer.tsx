@@ -15,6 +15,8 @@ import {
   Ghost,
   Shield,
   Compass,
+  User,
+  Settings,
 } from 'lucide-react';
 import { useNexaStore, ViewMode } from '../../store/useNexaStore';
 
@@ -102,6 +104,7 @@ export const MobileNavDrawer: React.FC<MobileNavDrawerProps> = ({
     { view: 'quests', label: 'Quests', icon: Award },
     { view: 'memories', label: 'Memories', icon: Sparkles },
     { view: 'matches', label: 'People', icon: HeartHandshake },
+    { view: 'identity', label: 'You', icon: User },
   ];
 
   return (
@@ -125,6 +128,11 @@ export const MobileNavDrawer: React.FC<MobileNavDrawerProps> = ({
             animate={{ x: 0 }}
             exit={{ x: '-100%' }}
             transition={{ type: 'spring', damping: 28, stiffness: 280 }}
+            style={{
+              paddingTop: 'env(safe-area-inset-top, 0px)',
+              paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+              paddingLeft: 'env(safe-area-inset-left, 0px)',
+            }}
             className="relative z-10 flex h-full w-[290px] sm:w-[320px] max-w-[85vw] flex-col border-r border-slate-200/90 dark:border-white/10 bg-white dark:bg-[#070b18] text-slate-900 dark:text-slate-100 shadow-2xl overflow-y-auto no-scrollbar"
           >
             {/* Header: NEXA Brand & Tagline + Close Button */}
@@ -236,6 +244,19 @@ export const MobileNavDrawer: React.FC<MobileNavDrawerProps> = ({
                 <span className="text-[10px] uppercase font-semibold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-950/60 px-1.5 py-0.5 rounded">
                   Navigator
                 </span>
+              </button>
+
+              {/* Settings */}
+              <button
+                id="drawer-nav-settings"
+                className="flex w-full min-h-[44px] items-center gap-3 rounded-xl px-3.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.05] hover:text-slate-900 dark:hover:text-white transition-colors"
+                onClick={() => {
+                  /* Handle settings */
+                  onClose();
+                }}
+              >
+                <Settings className="h-4 w-4 text-slate-400 shrink-0" />
+                <span>Settings</span>
               </button>
 
               {/* Theme Toggle in Drawer (Requirement 6) */}
