@@ -1995,55 +1995,55 @@ Meaningful experiences are worth preserving.
 
 # 📸 Screenshots
 
-> Add final screenshots from the completed application inside `docs/screenshots/`.
-
 ## 🌌 Orbit
 
-```text
-docs/screenshots/orbit.png
-```
+<p align="center">
+  <img src="docs/screenshots/orbit.png" alt="NEXA Orbit — spatial social discovery" width="100%">
+</p>
 
-## ✦ Moments
+> The traditional feed becomes a spatial Orbit where Moments appear as discoverable social nodes.
 
-```text
-docs/screenshots/moment.png
-```
-
-## 💫 Resonance
-
-```text
-docs/screenshots/resonance.png
-```
+---
 
 ## 🪐 Living Spaces
 
-```text
-docs/screenshots/spaces.png
-```
+<p align="center">
+  <img src="docs/screenshots/spaces.png" alt="NEXA Living Spaces" width="100%">
+</p>
+
+> Enter temporary social environments built around collaboration, creativity, learning and shared experiences.
+
+---
 
 ## 🏆 Quests
 
-```text
-docs/screenshots/quests.png
-```
+<p align="center">
+  <img src="docs/screenshots/quests.png" alt="NEXA Social Quests" width="100%">
+</p>
+
+> Quests turn passive browsing into active social participation.
+
+---
 
 ## 🌿 Memories
 
-```text
-docs/screenshots/memories.png
-```
+<p align="center">
+  <img src="docs/screenshots/memories.png" alt="NEXA Memory Garden" width="100%">
+</p>
 
-## ✨ Aura
+> Meaningful Moments and interactions can become Memories instead of disappearing into an endless feed.
 
-```text
-docs/screenshots/aura.png
-```
+---
 
-## 🤖 Concierge
+## 🤖 Social Concierge
 
-```text
-docs/screenshots/concierge.png
-```
+<p align="center">
+  <img src="docs/screenshots/concierge.png" alt="NEXA Social Concierge" width="100%">
+</p>
+
+> Concierge acts as an intelligent social navigator, helping users discover Moments, Spaces, Frequencies and people.
+
+---
 
 ---
 
