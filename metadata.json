@@ -1,0 +1,8 @@
+{
+  "name": "Remix NEXA",
+  "description": "NEXA is a radical social experience built around moments, living spaces, and collective intent — not followers or endless feeds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

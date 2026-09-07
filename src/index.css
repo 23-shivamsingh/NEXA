@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+
+    /* Light Mode Tokens: Warm clean neutral canvas, dark navy typography */
+    --bg-app: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f1f5f9;
+    --bg-surface-hover: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-strong: rgba(15, 23, 42, 0.16);
+    --ring-orbit-1: rgba(14, 165, 233, 0.25);
+    --ring-orbit-2: rgba(168, 85, 247, 0.2);
+    --ring-orbit-3: rgba(15, 23, 42, 0.08);
+    --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  }
+
+  .dark {
+    /* Dark Mode Tokens: Deep navy near-black, calm immersive atmosphere */
+    --bg-app: #050814;
+    --bg-surface: #0b0f22;
+    --bg-surface-elevated: #111732;
+    --bg-surface-hover: #172044;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --ring-orbit-1: rgba(56, 189, 248, 0.25);
+    --ring-orbit-2: rgba(192, 132, 252, 0.2);
+    --ring-orbit-3: rgba(255, 255, 255, 0.06);
+    --shadow-soft: 0 10px 30px -4px rgba(0, 0, 0, 0.5);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.24s cubic-bezier(0.16, 1, 0.3, 1), color 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Ambient Canvas Mesh */
+.bg-space-mesh {
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(at 20% 15%, rgba(14, 165, 233, 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(168, 85, 247, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(244, 63, 94, 0.03) 0px, transparent 60%);
+}
+
+.dark .bg-space-mesh {
+  background-image: 
+    radial-gradient(at 20% 15%, rgba(14, 165, 233, 0.12) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, rgba(168, 85, 247, 0.09) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(244, 63, 94, 0.05) 0px, transparent 60%);
+}
+
+.bg-space-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+}
+
+.dark .bg-space-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Subtle keyframe animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.03); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+@keyframes orbit-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-orbit-slow {
+  animation: orbit-rotate 160s linear infinite;
+}
+
+/* Hide scrollbars for clean minimal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Design System Motion Variables */
+:root {
+  --motion-fast: 150ms;
+  --motion-normal: 240ms;
+  --motion-transition: 360ms;
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ========================================================
+   NEXA GLOBAL INTERACTION & HOVER SYSTEM
+   Tactile, subtle, accessible, and GPU-accelerated.
+   ======================================================== */
+
+/* Focus-visible ring */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+.dark .focus-ring:focus-visible {
+  outline-color: #22d3ee;
+}
+
+/* Global button tactile press */
+.btn-press {
+  transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 160ms ease-out, 
+              border-color 160ms ease-out, 
+              box-shadow 160ms ease-out,
+              color 160ms ease-out;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .btn-press:hover {
+    transform: translateY(-1px);
+  }
+}
+.btn-press:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Interactive card hover */
+.card-interactive {
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 200ms ease-out,
+              box-shadow 200ms ease-out,
+              background-color 200ms ease-out;
+  will-change: transform, box-shadow;
+}
+@media (hover: hover) and (pointer: fine) {
+  .card-interactive:hover {
+    transform: translateY(-2px);
+  }
+}
+.card-interactive:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* Interactive icon button */
+.icon-btn {
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 150ms ease-out,
+              color 150ms ease-out,
+              border-color 150ms ease-out;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover {
+    transform: scale(1.06);
+  }
+}
+.icon-btn:active {
+  transform: scale(0.94);
+}
+
+/* Interactive chip / pill */
+.chip-interactive {
+  transition: transform 140ms cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 140ms ease-out,
+              border-color 140ms ease-out,
+              color 140ms ease-out,
+              box-shadow 140ms ease-out;
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .chip-interactive:hover {
+    transform: translateY(-1px);
+  }
+}
+.chip-interactive:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
