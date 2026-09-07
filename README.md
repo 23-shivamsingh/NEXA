@@ -11,7 +11,7 @@
 <p align="center">
   <a href="YOUR_LIVE_DEMO_URL">🌐 Live Demo</a>
   &nbsp; • &nbsp;
-  <a href="YOUR_GITHUB_REPOSITORY_URL">💻 Source Code</a>
+  <a href="https://github.com/23-shivamsingh/NEXA">💻 Source Code</a>
 </p>
 
 ---
