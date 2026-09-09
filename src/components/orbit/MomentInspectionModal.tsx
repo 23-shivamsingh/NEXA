@@ -107,13 +107,9 @@ export const MomentInspectionModal: React.FC = () => {
     };
   }, []);
 
-  if (!inspectingMomentId) return null;
-
-  const moment = moments.find((m) => m.id === inspectingMomentId);
-  if (!moment) return null;
-
-  const isAnchored = anchoredMomentIds.includes(moment.id) || moment.lifecycleStatus === 'Anchored';
-  const existingUserResonance = userResonances[moment.id];
+  const moment = inspectingMomentId ? moments.find((m) => m.id === inspectingMomentId) : null;
+  const isAnchored = moment ? (anchoredMomentIds.includes(moment.id) || moment.lifecycleStatus === 'Anchored') : false;
+  const existingUserResonance = moment ? userResonances[moment.id] : undefined;
 
   // Data-driven transparent matching factors
   const matchingFactors = useMemo(() => {
@@ -202,6 +198,8 @@ export const MomentInspectionModal: React.FC = () => {
 
     return factors;
   }, [moment, activeIntentContract, selectedIntent, socialEnergy, currentUser, echoLinks, existingUserResonance]);
+
+  if (!inspectingMomentId || !moment) return null;
 
   // Press and hold tactile resonance mechanics
   const startResonanceHold = () => {
