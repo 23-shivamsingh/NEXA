@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import {
   Intent,
+  IntentContract,
   EchoType,
   Moment,
   LivingSpace,
@@ -73,6 +74,8 @@ interface NexaState {
   serendipityMomentId: string | null;
   userResonances: Record<string, { intensity: 'Gentle' | 'Harmonic' | 'Deep' | 'Transcendent'; value: number; timestamp: string }>;
   anchoredMomentIds: string[];
+  activeIntentContract: IntentContract | null;
+  isIntentContractOpen: boolean;
 
   currentUser: IdentityProfile;
   moments: Moment[];
@@ -117,6 +120,8 @@ interface NexaState {
   forgeEchoLinkWithUser: (person: SocialMatch) => void;
   toggleShortcutsHelp: (isOpen?: boolean) => void;
   toggleUniversalSearch: (isOpen?: boolean) => void;
+  setIntentContract: (contract: IntentContract | null) => void;
+  toggleIntentContract: (isOpen?: boolean) => void;
   
   inspectMoment: (momentId: string | null) => void;
   openSpace: (spaceId: string, enterAsGhost?: boolean) => void;
@@ -241,6 +246,7 @@ function persistState(state: Partial<NexaState>) {
       echoLinks: state.echoLinks,
       userResonances: state.userResonances,
       anchoredMomentIds: state.anchoredMomentIds,
+      activeIntentContract: state.activeIntentContract,
       sessionStats: state.sessionStats,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(subset));
@@ -283,6 +289,8 @@ export const useNexaStore = create<NexaState>((set, get) => ({
   serendipityMomentId: null,
   userResonances: saved?.userResonances || {},
   anchoredMomentIds: saved?.anchoredMomentIds || [],
+  activeIntentContract: saved?.activeIntentContract || null,
+  isIntentContractOpen: false,
 
   currentUser: INITIAL_USER,
   moments: saved?.moments || INITIAL_MOMENTS,
@@ -512,6 +520,21 @@ export const useNexaStore = create<NexaState>((set, get) => ({
 
   toggleUniversalSearch: (isOpen) => {
     set((s) => ({ isUniversalSearchOpen: isOpen !== undefined ? isOpen : !s.isUniversalSearchOpen }));
+  },
+
+  setIntentContract: (contract) => {
+    set({ activeIntentContract: contract });
+    if (contract) {
+      set({ selectedIntent: contract.intent });
+      get().addToast(`✦ Intent Contract Activated: "${contract.label}"`, 'aura');
+    } else {
+      get().addToast('Intent Contract released. Full orbit available.', 'info');
+    }
+    persistState(get());
+  },
+
+  toggleIntentContract: (isOpen) => {
+    set((s) => ({ isIntentContractOpen: isOpen !== undefined ? isOpen : !s.isIntentContractOpen }));
   },
 
   setTheme: (theme) => {

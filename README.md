@@ -5,7 +5,10 @@
 > **Don't follow people. Follow moments.**
 
 <p align="center">
-  <strong>NEXA is an experimental social experience built around intent, curiosity, resonance and meaningful participation — not infinite scrolling.</strong>
+  <strong>
+    NEXA is an experimental social experience built around intent, curiosity,
+    resonance, participation and meaningful connection — not infinite scrolling.
+  </strong>
 </p>
 
 <p align="center">
@@ -20,86 +23,96 @@
 
 ## The Frontend Odyssey 2026 — Frontend Arena
 
-NEXA is an original frontend-first social experience created for the **REIMAGINE SOCIAL** challenge.
+NEXA was created for the:
 
-The project explores a fundamental question:
+> **REIMAGINE SOCIAL — Design the Next Generation of Social Interaction**
 
-> **What if social media was designed around meaningful experiences instead of maximizing attention?**
-
-NEXA challenges the conventional social-media model of:
+The challenge asks us to rethink what social interaction could look like beyond the familiar patterns of:
 
 - Infinite feeds
 - Likes
 - Followers
 - Popularity metrics
-- Algorithmic discovery
+- Algorithm-driven discovery
 - Passive content consumption
 
-and replaces these primitives with a new interaction model based on:
+NEXA explores a different model:
 
-**Intent → Curiosity → Exploration → Resonance → Participation → Connection → Memory**
+```text
+Intent
+   ↓
+Curiosity
+   ↓
+Exploration
+   ↓
+Resonance
+   ↓
+Participation
+   ↓
+Connection
+   ↓
+Memory
+```
 
----
+Instead of asking:
 
-# 📸 Product Preview
+> **"What should I scroll next?"**
 
-<p align="center">
-  <img src="docs/screenshots/orbit.png" alt="NEXA Home / Orbit" width="100%">
-</p>
+NEXA asks:
 
-<p align="center">
-  <em>NEXA replaces the traditional social feed with a spatial social environment.</em>
-</p>
+> **"What do I want to experience right now?"**
 
 ---
 
 # 🚨 The Problem
 
-Modern social platforms are largely built around a familiar loop:
+Most social platforms still rely on a familiar interaction loop:
 
 ```text
 Open App
-    ↓
+   ↓
 Infinite Feed
-    ↓
+   ↓
 Scroll
-    ↓
+   ↓
 Like
-    ↓
+   ↓
 Follow
-    ↓
+   ↓
 Scroll Again
-    ↓
+   ↓
 Repeat
 ```
 
-This model creates several problems:
+This model is effective at continuously delivering content, but it can turn social interaction into passive consumption.
 
-- Passive content consumption
+Common problems include:
+
 - Infinite scrolling
 - Popularity-driven discovery
 - Follower pressure
 - Engagement competition
 - Algorithmic filter bubbles
 - Social comparison
+- Passive content consumption
 - Pressure to constantly perform an online identity
-- Communities that remain active even after their original purpose disappears
+- Communities that remain active after their original purpose disappears
 
-Most importantly, traditional social platforms often optimize for:
+The fundamental question becomes:
 
-> **"How long can we keep you here?"**
+> **"How long can we keep the user here?"**
 
-NEXA asks a different question:
+NEXA proposes a different question:
 
-> **"What meaningful experience can you have here?"**
+> **"What meaningful experience can the user have here?"**
 
 ---
 
 # 💡 Our Solution — NEXA
 
-NEXA reimagines the fundamental primitives of social media.
+NEXA replaces the traditional feed-centric social model with an environment built around **intentional participation**.
 
-Instead of opening another infinite feed, users enter a dynamic social environment where they can:
+Instead of immediately receiving an endless content stream, users can:
 
 ```text
 Choose Intent
@@ -119,7 +132,9 @@ Connect
 Create Memories
 ```
 
-NEXA is not simply a visual redesign of an existing social platform.
+The user becomes an active participant rather than simply a consumer of an algorithmically ordered timeline.
+
+NEXA is not just a visual redesign of a social network.
 
 It changes the underlying interaction model.
 
@@ -127,7 +142,7 @@ It changes the underlying interaction model.
 
 # 🧠 The Core Idea
 
-Traditional social platforms:
+Traditional social platforms often look conceptually like:
 
 ```text
 People
@@ -145,7 +160,7 @@ Feed
 Scroll
 ```
 
-NEXA:
+NEXA experiments with:
 
 ```text
 Intent
@@ -165,9 +180,11 @@ Connection
 Memory
 ```
 
-The user is not treated as a passive consumer.
+The important difference is that **the user's current intention becomes the starting signal**.
 
-The user becomes an **active participant in a social environment**.
+The platform is no longer only deciding what to show.
+
+The user first communicates what kind of experience they want.
 
 ---
 
@@ -187,11 +204,13 @@ The user becomes an **active participant in a social environment**.
 | 📊 Popularity | 🤝 Participation |
 | 📦 Archive | 🌿 Memory Garden |
 
-This is the foundation of NEXA's social interaction model.
+These are not isolated feature replacements.
+
+Together, they form NEXA's alternative social interaction model.
 
 ---
 
-# 🌌 NEXA Product Flow
+# 🌌 Product Flow
 
 ```mermaid
 flowchart TD
@@ -199,37 +218,29 @@ flowchart TD
     A["🎯 INTENT<br/>What do I want right now?"]
     B["📡 FREQUENCY<br/>What am I curious about?"]
     C["🌌 ORBIT<br/>Explore the social environment"]
-
     D["✦ MOMENT<br/>Discover something worth engaging with"]
-
     E["🧭 DRIFT<br/>Follow a curiosity trail"]
     F["🎲 SERENDIPITY<br/>Discover something unexpected"]
-
     G["💫 RESONANCE<br/>Express meaningful response"]
     H["🤝 PARTICIPATION<br/>Join • Create • Collaborate"]
-
     I["🪐 LIVING SPACE<br/>Temporary social environment"]
     J["🔗 ECHO LINK<br/>Meaningful mutual connection"]
-
     K["🌿 MEMORY<br/>Preserve meaningful experiences"]
     L["✨ AURA<br/>Evolving social identity"]
 
     A --> B
     B --> C
-
     C --> D
     C --> E
     C --> F
-
     D --> G
+    E --> G
+    F --> G
     G --> H
-
-    H --> I
     G --> J
-
+    H --> I
     I --> K
     J --> K
-
     K --> L
     L --> C
 ```
@@ -244,7 +255,7 @@ flowchart TD
 
 Orbit is the primary discovery environment of NEXA.
 
-Instead of displaying content as a vertically stacked feed, Moments exist as spatial nodes around the user.
+Instead of presenting Moments as a vertically stacked timeline, NEXA places them into a spatial environment around the user.
 
 ```text
                     ✦ Moment
@@ -260,8 +271,6 @@ Instead of displaying content as a vertically stacked feed, Moments exist as spa
                     ✦ Moment
 ```
 
-Users can visually explore their surrounding social environment.
-
 Orbit can respond to:
 
 - Current Intent
@@ -269,21 +278,25 @@ Orbit can respond to:
 - Active Moments
 - Social Energy
 - Discovery state
-- User interactions
+- User interaction
 
-### Why Orbit?
+The purpose is not simply to make a feed look different.
 
-The user is no longer endlessly consuming a predetermined content queue.
+The purpose is to change the user's mental model from:
 
-They are **navigating a social space**.
+> **"What should I scroll next?"**
+
+to:
+
+> **"Where do I want to explore?"**
 
 ---
 
-# 02 — 🎯 Intent
+## 02 — 🎯 Intent
 
 NEXA starts with the user's current intention.
 
-Available intents include:
+Available intent categories include:
 
 ```text
 ⚡ Create
@@ -295,27 +308,29 @@ Available intents include:
 🌊 Just Vibe
 ```
 
-Instead of an algorithm deciding what the user should see, the user provides the first signal.
+Instead of making the algorithm the first decision-maker, NEXA lets the user provide an initial signal.
 
 ```text
 "What do I want right now?"
-            ↓
-          Intent
-            ↓
-      NEXA adapts
+             ↓
+           Intent
+             ↓
+      Discovery Context
 ```
 
-Intent influences the discovery experience.
+Intent is temporary and contextual.
+
+It represents what the user wants from the social experience **right now**, rather than defining their permanent identity.
 
 ---
 
-# 03 — 📡 Frequencies
+## 03 — 📡 Frequencies
 
 ### Following People → Following Curiosity
 
-Users don't have to build their social experience around follower lists.
+NEXA experiments with replacing follower-centric discovery with **Frequencies**.
 
-Instead, they tune into **Frequencies**.
+A Frequency represents an area of curiosity or interest.
 
 Examples:
 
@@ -328,12 +343,20 @@ Examples:
 #AmbientSynthesis
 ```
 
-Changing Frequencies can influence what appears inside Orbit.
+Instead of asking:
+
+> "Who should I follow?"
+
+NEXA asks:
+
+> "What am I curious about?"
+
+The selected Frequencies can influence what appears inside Orbit.
 
 ```text
 Frequency
     ↓
-Orbit recalibration
+Orbit Context
     ↓
 New Moments
     ↓
@@ -342,17 +365,15 @@ New People
 New Spaces
 ```
 
-The user controls the signal instead of being controlled entirely by an algorithm.
-
 ---
 
-# 04 — ✦ Moments
+## 04 — ✦ Moments
 
 ### Posts → Moments
 
-A Moment is more than a traditional social post.
+A Moment is NEXA's alternative to a conventional social-media post.
 
-It is a **social invitation**.
+A Moment is designed as a **social invitation** rather than just a piece of content.
 
 Examples:
 
@@ -368,7 +389,7 @@ Examples:
 "Help me turn this rough idea into something real."
 ```
 
-A Moment encourages interaction rather than passive consumption.
+The goal is to encourage:
 
 ```text
 Moment
@@ -380,46 +401,48 @@ Participation
 Connection
 ```
 
+A Moment can represent an idea, question, activity, request, challenge or opportunity for collaboration.
+
 ---
 
-# 05 — 💫 Resonance
+## 05 — 💫 Resonance
 
 ### Likes → Resonance
 
-NEXA replaces the traditional Like with **Resonance**.
+NEXA replaces the conventional public Like with **Resonance**.
 
-Instead of:
+Traditional platforms might emphasize:
 
 ```text
 ❤️ 2,481 Likes
 ```
 
-the interaction focuses on how strongly a Moment resonates with the user.
+NEXA focuses more on the user's interaction with a Moment.
 
-Resonance can use:
+Resonance can involve interaction patterns such as:
 
-- Press & hold
+- Press and hold
 - Radial progress
 - Ripple effects
 - Pulse animations
-- Tactile feedback
-- Visual intensity
+- Tactile visual feedback
+- Progressive interaction
 
-The goal is:
+The design goal is:
 
 > **Meaningful response instead of public popularity competition.**
 
-Resonance can also influence later experiences such as Echo Links, Memories and Aura.
+Resonance can also contribute to subsequent social experiences such as connections, memories and identity signals.
 
 ---
 
-# 06 — 🔗 Echo Links
+## 06 — 🔗 Echo Links
 
 ### Followers → Echo Links
 
-NEXA does not require one-sided follower relationships.
+NEXA does not require relationships to begin with a one-sided follower action.
 
-A meaningful connection can emerge naturally through repeated interaction.
+An **Echo Link** represents a meaningful connection that can emerge through interaction.
 
 ```text
 Discover
@@ -433,21 +456,21 @@ Repeated Interaction
 Echo Link
 ```
 
-An Echo Link represents:
+The concept is:
 
 > **"We keep finding something meaningful in each other's presence."**
 
-This makes connection a result of interaction rather than a number displayed on a profile.
+This makes connection an outcome of interaction rather than a number displayed on a profile.
 
 ---
 
-# 07 — 🧭 Drift
+## 07 — 🧭 Drift
 
 ### Infinite Scroll → Curiosity Trail
 
-Drift provides an alternative to endless scrolling.
+Drift provides an alternative mental model to infinite scrolling.
 
-Traditional social:
+Traditional discovery:
 
 ```text
 Scroll
@@ -479,23 +502,19 @@ New curiosity
 
 Drift turns discovery into a journey.
 
-The user chooses where curiosity leads.
+The user follows curiosity instead of endlessly consuming a predetermined queue.
 
 ---
 
-# 08 — 🎲 Serendipity
+## 08 — 🎲 Serendipity
 
 ### Trending → Unexpected Discovery
 
-NEXA intentionally supports discovery outside the user's usual interests.
+Most social platforms optimize discovery around relevance, popularity or previous engagement.
 
-Instead of another:
+NEXA also explores the value of **unexpected discovery**.
 
-> "Trending Now"
-
-experience, NEXA can provide:
-
-> **"Take me somewhere unexpected."**
+Serendipity provides an intentional escape from the user's normal discovery pattern.
 
 ```text
 Normal Orbit
@@ -506,20 +525,20 @@ Unexpected Moment
      ↓
 New Interest
      ↓
-New Connection
+Potential Connection
 ```
 
-The goal is to reduce repetitive discovery loops and encourage curiosity.
+The goal is to introduce controlled randomness and curiosity without turning discovery into another popularity ranking.
 
 ---
 
-# 09 — 🪐 Living Spaces
+## 09 — 🪐 Living Spaces
 
 ### Groups → Living Spaces
 
 NEXA Spaces are designed as temporary social environments.
 
-A Space can exist around:
+A Space can revolve around:
 
 - A project
 - A conversation
@@ -543,17 +562,17 @@ Examples:
 🎨 Creative Prototype Room
 ```
 
-The idea is:
+The philosophy is:
 
 > **Don't just join a group. Enter an experience.**
 
 ---
 
-# 10 — 🎯 Collective Goals
+## 10 — 🎯 Collective Goals
 
 Living Spaces can contain shared objectives.
 
-Example:
+Examples:
 
 ```text
 COLLABORATIVE PLAYLIST
@@ -576,7 +595,7 @@ Create a playlist
 17 / 20 tracks
 ```
 
-The focus changes from:
+This changes the focus from:
 
 ```text
 "How many likes did this get?"
@@ -590,7 +609,7 @@ to:
 
 ---
 
-# 11 — 🫱 Presence
+## 11 — 🫱 Presence
 
 NEXA supports lower-pressure participation.
 
@@ -603,19 +622,23 @@ Inside a Space, users can communicate their current mode:
 👁 Observe
 ```
 
-Instead of forcing everyone to constantly post or comment, users can simply communicate:
+This allows someone to participate without being required to constantly post or comment.
+
+The message becomes:
 
 > **"I'm here."**
 
-This allows participation without requiring constant performance.
+rather than:
+
+> **"I need to perform."**
 
 ---
 
-# 12 — 🌿 Memory Garden
+## 12 — 🌿 Memory Garden
 
-Meaningful experiences should not disappear into an infinite feed.
+Meaningful experiences should not necessarily disappear into an endless timeline.
 
-NEXA preserves selected experiences as **Memories**.
+NEXA introduces **Memories** as a way of preserving selected experiences.
 
 A Memory can represent:
 
@@ -640,17 +663,17 @@ Rekindle
 New Experience
 ```
 
-Memories turn social activity into something that can be revisited.
+Memory is treated as part of the social journey rather than simply an archive of old posts.
 
 ---
 
-# 13 — ✨ Aura
+## 13 — ✨ Aura
 
 ### Profile Grid → Living Identity
 
-Instead of presenting a static grid of posts, NEXA introduces **Aura**.
+Instead of representing identity primarily through a static profile grid, NEXA introduces **Aura**.
 
-Aura represents an evolving social identity.
+Aura represents an evolving identity built from participation.
 
 Example dimensions:
 
@@ -661,14 +684,14 @@ Example dimensions:
 ⚡ Builder
 ```
 
-Aura can reflect the user's activity across NEXA:
+Conceptually:
 
 ```text
 Exploration
     +
-Resonance
-    +
 Creation
+    +
+Resonance
     +
 Connection
     +
@@ -677,17 +700,17 @@ Participation
       AURA
 ```
 
-The philosophy:
+The philosophy is:
 
 > **Identity is something you develop through experiences, not something you display through follower counts.**
 
 ---
 
-# 14 — 🤖 Social Concierge
+## 14 — 🤖 Social Concierge
 
 The Concierge acts as an intelligent social navigator.
 
-Instead of functioning only as a chatbot, it helps users navigate the NEXA ecosystem.
+Instead of functioning only as a traditional chatbot, the Concierge can help users navigate the NEXA ecosystem.
 
 Example requests:
 
@@ -703,7 +726,7 @@ Example requests:
 "Show me something completely unexpected."
 ```
 
-The Concierge can guide users toward:
+The intended navigation model is:
 
 ```text
 Intent
@@ -717,9 +740,11 @@ Spaces
 People
 ```
 
+NEXA also includes contextual fallback behavior so the prototype can still demonstrate the social-navigation experience when external AI access is unavailable.
+
 ---
 
-# 15 — 🏆 Social Quests
+## 15 — 🏆 Social Quests
 
 Quests turn discovery into active participation.
 
@@ -739,15 +764,15 @@ Discover a new Frequency.
 Remix an existing Moment.
 ```
 
-The goal is to make social discovery feel like an experience rather than consumption.
+The objective is to turn social discovery into an activity rather than passive consumption.
 
 ---
 
-# 16 — 🔀 Remix
+## 16 — 🔀 Remix
 
 NEXA treats ideas as things that can evolve.
 
-A Moment can transform into:
+A Moment can transform through participation:
 
 ```text
 Thought
@@ -761,15 +786,19 @@ Collaboration
 Artifact
 ```
 
-Remix allows users to build upon existing ideas instead of simply reacting to them.
+Remix allows users to build on an existing idea instead of simply reacting to it.
+
+This supports the larger NEXA philosophy of:
+
+> **Participation over consumption.**
 
 ---
 
-# 17 — 👻 Ghost Mode
+## 17 — 👻 Ghost Mode
 
 Ghost Mode provides a lower-pressure exploration experience.
 
-Users can explore selected parts of NEXA without turning every action into a permanent social signal.
+The idea is to allow users to explore selected parts of NEXA without turning every action into a permanent social signal.
 
 This supports:
 
@@ -778,11 +807,13 @@ This supports:
 - Curiosity
 - Low-pressure participation
 
+Ghost Mode reinforces the idea that not every social action needs to become a public performance.
+
 ---
 
-# 18 — 🧠 Moment Lifecycle
+## 18 — 🧠 Moment Lifecycle
 
-NEXA can treat Moments as living experiences instead of permanent posts.
+NEXA treats Moments as potentially living experiences rather than permanent posts.
 
 ```text
 Moment Created
@@ -807,11 +838,11 @@ Expires       Memory
           Memory Garden
 ```
 
-A Moment can gain longer-term relevance through meaningful interaction instead of raw popularity.
+A Moment can gain lasting relevance through meaningful interaction rather than raw popularity.
 
 ---
 
-# 19 — ⚡ Social Energy
+## 19 — ⚡ Social Energy
 
 Users can communicate their current social state.
 
@@ -825,19 +856,21 @@ Examples:
 ⚡ Chaotic
 ```
 
-This is not a permanent personality label.
+Social Energy is not intended to be a permanent personality label.
 
 It represents:
 
 > **"What kind of social experience do I want right now?"**
 
-Social Energy can influence discovery and recommendations.
+This can provide additional context for discovery and interaction.
 
 ---
 
-# 🔗 How Features Work Together
+# 🔗 How the Features Connect
 
-NEXA's features are intentionally interconnected.
+NEXA is designed as a connected social system rather than a collection of unrelated screens.
+
+The primary relationship is:
 
 ```text
 Intent
@@ -858,10 +891,10 @@ Memory
    ↓
 Aura
    ↓
-Back to Orbit
+Orbit
 ```
 
-Additional paths:
+Other discovery paths include:
 
 ```text
 Orbit
@@ -871,6 +904,16 @@ Drift
 New Moment
   ↓
 Resonance
+```
+
+```text
+Orbit
+  ↓
+Serendipity
+  ↓
+Unexpected Moment
+  ↓
+New Interest
 ```
 
 ```text
@@ -895,7 +938,7 @@ Frequency
 Moment / Space / Person
 ```
 
-This makes NEXA feel like a **social system**, rather than a collection of unrelated pages.
+This interconnected model is what allows NEXA to behave like a social environment rather than simply another collection of feeds and profiles.
 
 ---
 
@@ -905,27 +948,18 @@ This makes NEXA feel like a **social system**, rather than a collection of unrel
 flowchart TD
 
     A["👤 User Opens NEXA"]
-
     B["🎯 Choose Intent"]
     C["📡 Tune Frequencies"]
-
     D["🌌 Enter Orbit"]
-
     E["✦ Discover Moment"]
     F["🧭 Drift"]
     G["🎲 Serendipity"]
-
     H["💫 Resonance"]
-
     I["🤝 Participate"]
-
     J["🪐 Living Space"]
     K["🎯 Collective Goal"]
-
     L["🔗 Echo Link"]
-
     M["🌿 Memory"]
-
     N["✨ Aura Evolves"]
 
     A --> B
@@ -941,818 +975,34 @@ flowchart TD
     G --> H
 
     H --> I
+    H --> L
 
     I --> J
     J --> K
     K --> M
 
-    H --> L
     L --> M
-
     M --> N
     N --> D
 ```
 
 ---
 
-# 🏗️ System Architecture
+# 🧩 Why NEXA Is Different
 
-```mermaid
-flowchart TD
-
-    USER["👤 User"]
-
-    APP["🌌 NEXA Application"]
-
-    NAV["Navigation Layer"]
-    DISCOVERY["Discovery Layer"]
-    SOCIAL["Social Interaction Layer"]
-    IDENTITY["Identity Layer"]
-    MEMORY["Memory Layer"]
-    AI["Concierge Layer"]
-
-    STATE["Zustand State Store"]
-
-    PERSIST["Local Persistence"]
-
-    DATA["Mock / Local Data"]
-
-    USER --> APP
-
-    APP --> NAV
-    APP --> DISCOVERY
-    APP --> SOCIAL
-    APP --> IDENTITY
-    APP --> MEMORY
-    APP --> AI
-
-    DISCOVERY --> STATE
-    SOCIAL --> STATE
-    IDENTITY --> STATE
-    MEMORY --> STATE
-    AI --> STATE
-
-    STATE --> PERSIST
-    PERSIST --> DATA
-```
-
----
-
-# 🧩 Frontend Architecture
-
-```mermaid
-flowchart TD
-
-    APP["NEXA App Shell"]
-
-    APP --> HEADER["Header"]
-    APP --> INTENT["Intent Bar"]
-    APP --> MAIN["Main Experience"]
-    APP --> NAV["Responsive Navigation"]
-
-    MAIN --> ORBIT["Orbit"]
-    MAIN --> SPACES["Spaces"]
-    MAIN --> QUESTS["Quests"]
-    MAIN --> MEMORIES["Memories"]
-    MAIN --> PEOPLE["People"]
-    MAIN --> YOU["You"]
-
-    ORBIT --> MOMENTS["Moments"]
-    ORBIT --> FREQUENCIES["Frequencies"]
-    ORBIT --> DRIFT["Drift"]
-    ORBIT --> SERENDIPITY["Serendipity"]
-
-    MOMENTS --> RESONANCE["Resonance"]
-    RESONANCE --> ECHO["Echo Links"]
-
-    SPACES --> GOALS["Collective Goals"]
-    SPACES --> PRESENCE["Presence"]
-
-    YOU --> AURA["Aura"]
-    YOU --> SIGNALS["Identity Signals"]
-
-    MEMORIES --> REKINDLE["Rekindle"]
-
-    APP --> SHARED["Shared UI Components"]
-
-    SHARED --> BUTTONS["Buttons"]
-    SHARED --> CARDS["Cards"]
-    SHARED --> MODALS["Modals"]
-    SHARED --> SHEETS["Mobile Sheets"]
-    SHARED --> TOOLTIPS["Tooltips"]
-```
-
----
-
-# 🛠️ Technology Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | React + TypeScript |
-| Build Tool | Vite |
-| Styling | Tailwind CSS |
-| State Management | Zustand |
-| Animation | Motion / Framer Motion |
-| Icons | Lucide React |
-| Visual System | SVG + CSS |
-| Data | Mock / Local Data |
-| Persistence | Browser Local Storage |
-| AI | Gemini / AI-assisted features where configured |
-| Version Control | Git + GitHub |
-
----
-
-# 🎨 Design System
-
-NEXA uses a distinctive spatial visual language.
-
-### Visual Principles
-
-- Cosmic / spatial aesthetic
-- Deep dark surfaces
-- Electric cyan accents
-- Violet interaction states
-- High-contrast typography
-- Subtle gradients
-- Thin borders
-- Spatial layouts
-- Purposeful motion
-- Strong visual hierarchy
-
-### Design Goal
-
-NEXA should feel:
-
-> **Futuristic. Calm. Spatial. Tactile. Human.**
-
-The interface is designed to avoid the appearance of a generic AI-generated dashboard.
-
----
-
-# 🎞️ Motion & Interaction
-
-Motion is used to communicate state rather than simply decorate the interface.
-
-Examples:
-
-```text
-Intent Change
-     ↓
-Orbit Recalibrates
-```
-
-```text
-Hover
-     ↓
-Interactive Feedback
-```
-
-```text
-Resonance
-     ↓
-Pulse / Ripple
-```
-
-```text
-Echo Link
-     ↓
-Connection Animation
-```
-
-```text
-Quest Completion
-     ↓
-Progress Transformation
-```
-
-```text
-Memory Rekindle
-     ↓
-Experience Transition
-```
-
-Interactive controls provide clear states:
-
-```text
-IDLE
-  ↓
-HOVER
-  ↓
-ACTIVE
-  ↓
-SELECTED
-```
-
-Touch devices use tap and press interactions rather than depending exclusively on hover.
-
----
-
-# 📱 Responsive Design
-
-NEXA is designed as a responsive product from the ground up.
-
-## Desktop
-
-- Spatial Orbit
-- Full navigation
-- Expanded layouts
-- Side panels
-- Rich interactions
-
-## Tablet
-
-- Adaptive density
-- Responsive grids
-- Touch-friendly controls
-- Contextual panels
-
-## Mobile
-
-- Hamburger navigation
-- Mobile drawer
-- Bottom navigation
-- One-column layouts
-- Touch-friendly controls
-- Mobile sheets
-- Simplified Orbit
-- Responsive cards
-
-Target viewport ranges:
-
-```text
-320px
-360px
-375px
-390px
-414px
-430px
-480px
-600px
-768px
-834px
-1024px
-1280px
-1440px
-1600px
-1920px+
-```
-
----
-
-# 🌓 Theme Support
-
-NEXA supports:
-
-```text
-☀️ Light Mode
-🌙 Dark Mode
-```
-
-The design system ensures that:
-
-- Text remains readable
-- Cards maintain contrast
-- Interactive elements remain visible
-- Borders remain distinguishable
-- Hover states work in both themes
-- Controls remain accessible
-
----
-
-# ♿ Accessibility
-
-Accessibility is considered throughout the interface.
-
-NEXA includes considerations for:
-
-- Semantic HTML
-- Keyboard navigation
-- Visible focus states
-- Accessible controls
-- Readable contrast
-- Touch-friendly targets
-- Responsive dialogs
-- Escape-to-close interactions
-- Reduced-motion preferences
-- Mobile usability
-
----
-
-# 🧠 State & Data Model
-
-NEXA uses centralized state to connect the different social experiences.
-
-Conceptually:
-
-```text
-                    NEXA STATE
-                        │
-        ┌───────────────┼────────────────┐
-        │               │                │
-        ▼               ▼                ▼
-      USER           DISCOVERY         SOCIAL
-        │               │                │
-        │          ┌────┼────┐       ┌───┴────┐
-        │          ▼    ▼    ▼       ▼        ▼
-        │       Intent Freq Orbit Resonance Echo
-        │
-        ├───────────────┐
-        ▼               ▼
-      AURA           MEMORY
-        │               │
-        └───────┬───────┘
-                ▼
-              ORBIT
-```
-
-The state system enables interactions to influence other parts of the experience.
-
-For example:
-
-```text
-Resonance
-    ↓
-Echo Link
-    ↓
-Memory
-    ↓
-Aura
-```
-
----
-
-# 📁 Project Structure
-
-```text
-NEXA/
-│
-├── public/
-│   ├── favicon.svg
-│   └── ...
-│
-├── src/
-│   ├── components/
-│   │   ├── navigation/
-│   │   ├── orbit/
-│   │   ├── moments/
-│   │   ├── spaces/
-│   │   ├── quests/
-│   │   ├── memories/
-│   │   ├── people/
-│   │   ├── identity/
-│   │   └── shared/
-│   │
-│   ├── data/
-│   ├── hooks/
-│   ├── store/
-│   ├── utils/
-│   └── ...
-│
-├── public/
-│
-├── index.html
-├── package.json
-├── server.ts
-├── tsconfig.json
-├── vite.config.ts
-├── bun.lock
-└── README.md
-```
-
-> The exact implementation structure may evolve as the project develops.
-
----
-
-# 🚀 Getting Started
-
-## Prerequisites
-
-Make sure you have:
-
-- Node.js
-- npm
-- Git
-
----
-
-## 1. Clone the Repository
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
-
-```bash
-cd NEXA
-```
-
----
-
-## 2. Install Dependencies
-
-```bash
-npm install
-```
-
----
-
-## 3. Start Development Server
-
-```bash
-npm run dev
-```
-
-Open the local URL provided by Vite.
-
-Usually:
-
-```text
-http://localhost:5173
-```
-
----
-
-## 4. Production Build
-
-```bash
-npm run build
-```
-
----
-
-## 5. Preview Production Build
-
-```bash
-npm run preview
-```
-
----
-
-# 🔐 Environment Variables
-
-If AI/API functionality is configured, create the required local environment file.
-
-Example:
-
-```env
-GEMINI_API_KEY=your_api_key
-```
-
-Never commit real API keys or secrets to GitHub.
-
-Recommended `.gitignore`:
-
-```gitignore
-node_modules/
-dist/
-.env
-.env.local
-.env.*.local
-```
-
----
-
-# 🧪 Judge Demo Flow
-
-A short demo can communicate the complete NEXA idea quickly.
-
-## Step 1 — Open NEXA
-
-Start at the NEXA Orbit.
-
-Show:
-
-> **NO-FEED**
-
-Explain that NEXA is not another infinite-scroll platform.
-
----
-
-## Step 2 — Choose Intent
-
-Select:
-
-```text
-🧭 Discover
-```
-
-Explain:
-
-> "Instead of starting with a feed, NEXA starts by asking what I want right now."
-
----
-
-## Step 3 — Tune a Frequency
-
-Select a curiosity such as:
-
-```text
-#SpatialComputing
-```
-
-Show Orbit responding to the user's interest.
-
----
-
-## Step 4 — Open a Moment
-
-Select a Moment from Orbit.
-
-Explain:
-
-> "A Moment isn't just content. It's an invitation to participate."
-
----
-
-## Step 5 — Demonstrate Resonance
-
-Use the Resonance interaction.
-
-Show the visual response.
-
-Explain:
-
-> "Instead of a public like count, NEXA uses Resonance as a meaningful response."
-
----
-
-## Step 6 — Enter a Living Space
-
-Join a Space.
-
-Show:
-
-- Participants
-- Presence
-- Collective Goal
-- Collaboration
-
----
-
-## Step 7 — Show Echo Link
-
-Demonstrate meaningful interaction leading toward an Echo Link.
-
----
-
-## Step 8 — Show Memories
-
-Open the Memory experience.
-
-Explain:
-
-> "Meaningful experiences don't disappear into an infinite feed."
-
----
-
-## Step 9 — Show Aura
-
-Open:
-
-```text
-You → Aura
-```
-
-Explain:
-
-> "Instead of a static profile grid, NEXA represents identity as something that evolves through experiences."
-
----
-
-# 🎤 30-Second Pitch
-
-> **"Most social platforms start with a feed. NEXA starts with you.**
->
-> You choose your intent, tune into your interests, and explore a spatial Orbit of Moments instead of endlessly scrolling.
->
-> Likes become Resonance. Followers become Echo Links. Groups become Living Spaces. And your profile becomes an evolving Aura.
->
-> The goal isn't to keep you scrolling longer.
->
-> **It's to help you discover something meaningful, participate in it, connect with people, and remember the experience."**
-
----
-
-# 🏆 Hackathon Evaluation Alignment
-
-NEXA is designed around the major evaluation dimensions of a frontend innovation challenge.
-
----
-
-## 🎯 Problem Understanding
-
-NEXA directly addresses limitations of conventional feed-based social platforms:
-
-- Infinite consumption
-- Algorithmic discovery
-- Popularity pressure
-- Follower-centric relationships
-- Passive engagement
-- Filter bubbles
-
-Rather than adding another feature to the existing model, NEXA changes the model itself.
-
----
-
-## 💡 Creativity & Innovation
-
-NEXA introduces a new social vocabulary:
-
-```text
-Feed       → Orbit
-Post       → Moment
-Like       → Resonance
-Follow     → Frequency
-Followers  → Echo Links
-Groups     → Living Spaces
-Scroll     → Drift
-Profile    → Aura
-Trending   → Serendipity
-Archive    → Memory
-```
-
-These are not isolated UI changes.
-
-They form one connected interaction system.
-
----
-
-## 🎨 Visual Design
-
-NEXA uses a distinctive visual language based on:
-
-- Spatial discovery
-- Orbiting nodes
-- Dynamic Moments
-- Animated Resonance
-- Living Aura
-- Cosmic visual language
-- Light / dark themes
-- Responsive layouts
-- Micro-interactions
-
-The visual design is intended to reinforce the product concept rather than simply decorate it.
-
----
-
-## 🧭 User Experience
-
-The primary mental model is:
-
-```text
-What do I want?
-      ↓
-Intent
-
-What am I curious about?
-      ↓
-Frequency
-
-What's happening around me?
-      ↓
-Orbit
-
-What resonates?
-      ↓
-Moment
-
-What can I participate in?
-      ↓
-Living Space
-
-Who did I meaningfully connect with?
-      ↓
-Echo Link
-
-What remains?
-      ↓
-Memory
-```
-
----
-
-## ⚙️ Functionality
-
-NEXA brings multiple interactions into one connected experience:
-
-- Orbit discovery
-- Grid discovery
-- Intent selection
-- Frequency tuning
-- Moment exploration
-- Resonance interaction
-- Echo Links
-- Drift Mode
-- Serendipity
-- Living Spaces
-- Collective Goals
-- Presence states
-- Social Quests
-- Memories
-- Aura
-- People discovery
-- Concierge
-- Remix
-- Notifications
-- Search
-- Ghost Mode
-- Theme switching
-- Responsive navigation
-
----
-
-## 📱 Responsiveness
-
-NEXA is designed for:
-
-```text
-Desktop
-Tablet
-Mobile
-```
-
-with interaction patterns adapted to each form factor.
-
----
-
-## 🧹 Code Quality
-
-The implementation focuses on:
-
-- TypeScript
-- Reusable components
-- Centralized state
-- Modular UI
-- Responsive utility classes
-- Maintainable interactions
-- Reusable visual primitives
-- Separation of UI and state
-- Local persistence where appropriate
-
----
-
-# 📊 Traditional Social vs NEXA
-
-## Traditional Social
-
-```text
-POST
-  ↓
-LIKE
-  ↓
-FOLLOW
-  ↓
-ALGORITHM
-  ↓
-FEED
-  ↓
-SCROLL
-  ↓
-REPEAT
-```
-
-## NEXA
-
-```text
-INTENT
-  ↓
-CURIOSITY
-  ↓
-EXPLORE
-  ↓
-RESONATE
-  ↓
-PARTICIPATE
-  ↓
-CONNECT
-  ↓
-CREATE
-  ↓
-REMEMBER
-```
-
-The difference is not only visual.
-
-> **NEXA changes what the user is actually doing.**
-
----
-
-# 🌟 What Makes NEXA Different?
-
-NEXA is intentionally not:
+NEXA is intentionally not designed as:
 
 ```text
 Another Instagram
 Another Reddit
 Another X
-Another Snapchat
 Another TikTok
+Another Snapchat
 ```
 
-Instead, NEXA asks:
+The objective is not to create another platform with a different visual skin.
 
-> **Can we redesign the fundamental interaction model of social media?**
-
-The answer is expressed through:
+The objective is to rethink the fundamental primitives of social interaction.
 
 ```text
 Feed
@@ -1796,64 +1046,1010 @@ Archive
 Memory
 ```
 
-This makes NEXA a **new social interaction model**, rather than another social-media clone.
+The difference is not only visual.
+
+> **NEXA changes what the user is actually doing.**
 
 ---
 
-# 🗺️ NEXA Architecture at a Glance
+# 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+
+    USER["👤 User"]
+
+    APP["🌌 NEXA Application"]
+
+    UI["React UI"]
+
+    ORBIT["🌌 Orbit"]
+    SPACES["🪐 Living Spaces"]
+    MOMENTS["✦ Moments"]
+    QUESTS["🏆 Quests"]
+    MEMORY["🌿 Memories"]
+    IDENTITY["✨ Identity / Aura"]
+    CONCIERGE["🤖 Concierge"]
+
+    STATE["Zustand State Store"]
+
+    DATA["Mock / Local Data"]
+
+    API["Express API"]
+
+    AI["Gemini API"]
+
+    USER --> APP
+    APP --> UI
+
+    UI --> ORBIT
+    UI --> SPACES
+    UI --> MOMENTS
+    UI --> QUESTS
+    UI --> MEMORY
+    UI --> IDENTITY
+    UI --> CONCIERGE
+
+    ORBIT --> STATE
+    SPACES --> STATE
+    MOMENTS --> STATE
+    QUESTS --> STATE
+    MEMORY --> STATE
+    IDENTITY --> STATE
+    CONCIERGE --> STATE
+
+    STATE --> DATA
+
+    CONCIERGE --> API
+    API --> AI
+```
+
+---
+
+# 🧩 Frontend Architecture
+
+The frontend is organized around feature-oriented React components.
 
 ```text
-                         🌌 NEXA
-                           │
-                           ▼
-                     ┌───────────┐
-                     │  INTENT   │
-                     └─────┬─────┘
-                           │
-                           ▼
-                   ┌───────────────┐
-                   │  FREQUENCIES  │
-                   └───────┬───────┘
-                           │
-                           ▼
-                   ┌───────────────┐
-                   │     ORBIT     │
-                   └───────┬───────┘
-                           │
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-          MOMENTS        DRIFT      SERENDIPITY
-              │
-              ▼
-        ┌────────────┐
-        │ RESONANCE  │
-        └─────┬──────┘
-              │
-        ┌─────┴─────┐
-        ▼           ▼
- PARTICIPATION   ECHO LINK
-        │           │
-        ▼           │
- LIVING SPACE       │
-        │           │
-        ▼           │
- COLLECTIVE GOAL    │
-        │           │
-        └─────┬─────┘
-              ▼
-        MEMORY GARDEN
-              │
-              ▼
-             AURA
-              │
-              └──────────────► ORBIT
+src/
+│
+├── components/
+│   │
+│   ├── common/
+│   ├── orbit/
+│   ├── spaces/
+│   ├── discover/
+│   ├── memories/
+│   ├── quests/
+│   ├── identity/
+│   ├── matches/
+│   ├── concierge/
+│   ├── notifications/
+│   └── modals/
+│
+├── data/
+│   └── mockData.ts
+│
+├── store/
+│   └── useNexaStore.ts
+│
+├── types/
+│   └── index.ts
+│
+├── App.tsx
+├── index.css
+└── main.tsx
 ```
+
+The structure separates major product areas while keeping shared interaction and state logic reusable.
+
+---
+
+# 🛠️ Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React |
+| Language | TypeScript |
+| Build Tool | Vite |
+| Styling | Tailwind CSS |
+| State Management | Zustand |
+| Animation / Motion | Motion |
+| Icons | Lucide React |
+| Visual Effects | SVG / CSS |
+| Backend | Express.js |
+| Runtime | Node.js |
+| AI Integration | Google GenAI SDK |
+| Data | Mock / Local Data |
+| Version Control | Git + GitHub |
+| Deployment | Vercel |
+
+---
+
+# 🤖 AI Architecture
+
+NEXA includes an optional AI-powered Concierge.
+
+The architecture follows a server-side API boundary:
+
+```text
+Frontend
+   ↓
+/api/concierge
+   ↓
+Express Server
+   ↓
+Google GenAI SDK
+   ↓
+Gemini
+```
+
+The API key is kept on the server side rather than exposed directly in the browser.
+
+NEXA also maintains contextual fallback behavior so that the prototype can still demonstrate its social-navigation experience when external AI access is unavailable.
+
+---
+
+# ⚡ Performance
+
+Performance is particularly important for a spatial interface like NEXA because Orbit contains multiple animated and interactive elements.
+
+The project follows these principles:
+
+- Avoid unnecessary component re-renders
+- Keep transient interaction state isolated where practical
+- Prefer transform-based visual updates
+- Clean up timers and event listeners
+- Keep state subscriptions focused
+- Avoid unnecessary calculations during rendering
+- Reuse components instead of duplicating UI logic
+- Keep animation and interaction work localized
+- Preserve responsive performance on smaller screens
+
+The Orbit experience is the primary performance-sensitive area because it combines:
+
+- Spatial positioning
+- Animated nodes
+- Pointer interaction
+- Touch interaction
+- Filters
+- Discovery controls
+- Moment inspection
+- Multiple visual states
+
+Performance improvements should preserve the existing visual behavior rather than simplifying the experience.
+
+---
+
+# 🧹 Code Quality
+
+NEXA uses TypeScript throughout the application and is structured around reusable React components and centralized application state.
+
+The codebase focuses on:
+
+- Typed component props
+- Shared domain types
+- Reusable UI components
+- Centralized Zustand state
+- Feature-oriented component organization
+- Effect cleanup
+- Typed API boundaries
+- Separation of UI and state logic
+- Maintainable interaction handlers
+- Avoiding unnecessary duplication
+- Clear component responsibilities
+
+The goal is to keep the prototype understandable while providing a foundation that can evolve into a larger application.
+
+---
+
+# 🎨 Design System
+
+NEXA uses a spatial visual language designed to communicate the idea of a social environment rather than a traditional content feed.
+
+## Visual Principles
+
+- 🌌 Spatial / orbital layouts
+- ✨ Soft gradients
+- 🔵 Cyan interaction signals
+- 🟣 Violet discovery states
+- 🌙 Dark and light themes
+- Thin borders
+- Rounded surfaces
+- Strong visual hierarchy
+- Contextual animation
+- Tactile interaction feedback
+
+## Design Goal
+
+NEXA should feel:
+
+> **Futuristic. Calm. Spatial. Tactile. Human.**
+
+The visual system exists to reinforce the product concept rather than simply decorate the interface.
+
+---
+
+# 🎞️ Motion & Interaction
+
+Motion in NEXA is primarily used to communicate state and interaction.
+
+Examples:
+
+```text
+Intent Change
+     ↓
+Orbit Recalibration
+```
+
+```text
+Moment Interaction
+     ↓
+Resonance Feedback
+```
+
+```text
+Echo Link
+     ↓
+Connection Animation
+```
+
+```text
+Quest Completion
+     ↓
+Progress Feedback
+```
+
+```text
+Memory Rekindle
+     ↓
+Experience Transition
+```
+
+Interactive states generally communicate:
+
+```text
+IDLE
+  ↓
+HOVER
+  ↓
+ACTIVE
+  ↓
+SELECTED
+```
+
+Touch interactions are supported separately from hover-based interactions so that the experience remains usable on mobile devices.
+
+---
+
+# 📱 Responsive Design
+
+NEXA is designed as a responsive experience across:
+
+```text
+Desktop
+   ↓
+Tablet
+   ↓
+Mobile
+```
+
+## Desktop
+
+- Spatial Orbit
+- Full navigation
+- Expanded layouts
+- Larger interaction surfaces
+- Rich contextual panels
+- Multi-column experiences
+
+## Tablet
+
+- Responsive grids
+- Reduced density
+- Touch-friendly controls
+- Contextual panels
+- Flexible spacing
+
+## Mobile
+
+- Mobile navigation
+- Bottom navigation
+- Touch interactions
+- Mobile drawers
+- Mobile sheets
+- Simplified Orbit density
+- Responsive cards
+- Single-column layouts
+
+The goal is not to simply shrink the desktop UI.
+
+The interaction model adapts to the available screen and input method.
+
+---
+
+# 🌓 Theme Support
+
+NEXA supports:
+
+```text
+☀️ Light Mode
+🌙 Dark Mode
+```
+
+The design system aims to maintain:
+
+- Readable text
+- Distinguishable surfaces
+- Visible controls
+- Clear borders
+- Consistent interaction states
+- Usable navigation
+
+---
+
+# ♿ Accessibility
+
+Accessibility is considered throughout the interface.
+
+NEXA includes support for:
+
+- Semantic interactive elements
+- Keyboard navigation
+- Visible focus states
+- Accessible controls
+- Appropriate labels
+- Responsive dialogs
+- Escape-to-close interactions
+- Reduced-motion considerations
+- Touch-friendly interaction
+- Mobile usability
+
+New interactive functionality should follow the same principles.
+
+The goal is to ensure that NEXA's spatial interaction model does not come at the expense of usability.
+
+---
+
+# 🧠 State & Data Model
+
+NEXA uses Zustand for centralized application state.
+
+Conceptually, the application state connects:
+
+```text
+                    NEXA STATE
+
+                        │
+
+        ┌───────────────┼────────────────┐
+        │               │                │
+        ▼               ▼                ▼
+      USER          DISCOVERY          SOCIAL
+        │               │                │
+        │          ┌────┼────┐       ┌───┴────┐
+        │          ▼    ▼    ▼       ▼        ▼
+        │       Intent Freq Orbit Resonance Echo
+        │
+        ├───────────────┐
+        ▼               ▼
+      AURA           MEMORY
+        │               │
+        └───────┬───────┘
+                ▼
+              ORBIT
+```
+
+This allows interactions in one part of the product to influence other experiences.
+
+For example:
+
+```text
+Resonance
+    ↓
+Connection
+    ↓
+Memory
+    ↓
+Aura
+```
+
+---
+
+# 📁 Project Structure
+
+```text
+NEXA/
+│
+├── public/
+│   └── favicon.svg
+│
+├── docs/
+│   └── screenshots/
+│       ├── orbit.png
+│       ├── spaces.png
+│       ├── quests.png
+│       ├── memories.png
+│       └── concierge.png
+│
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   ├── concierge/
+│   │   ├── discover/
+│   │   ├── identity/
+│   │   ├── landing/
+│   │   ├── matches/
+│   │   ├── memories/
+│   │   ├── modals/
+│   │   ├── notifications/
+│   │   ├── orbit/
+│   │   ├── quests/
+│   │   └── spaces/
+│   │
+│   ├── data/
+│   │   └── mockData.ts
+│   │
+│   ├── store/
+│   │   └── useNexaStore.ts
+│   │
+│   ├── types/
+│   │   └── index.ts
+│   │
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── server.ts
+├── tsconfig.json
+├── vite.config.ts
+├── metadata.json
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+Make sure you have:
+
+- Node.js 18+
+- npm
+- Git
+
+---
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/23-shivamsingh/NEXA.git
+cd NEXA
+```
+
+---
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3. Configure Environment Variables
+
+Create a local environment file if you want to enable the Gemini-powered Concierge.
+
+```bash
+touch .env
+```
+
+Add:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+Never commit real API keys or secrets to GitHub.
+
+Recommended `.gitignore` entries:
+
+```gitignore
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+```
+
+---
+
+## 4. Start Development Server
+
+```bash
+npm run dev
+```
+
+The project runs through the Express + Vite development server.
+
+Open the local URL shown in your terminal.
+
+---
+
+# 🏗️ Production Build
+
+Create a production build with:
+
+```bash
+npm run build
+```
+
+Start the production server with:
+
+```bash
+npm start
+```
+
+---
+
+# 🧪 TypeScript / Code Validation
+
+Run TypeScript validation with:
+
+```bash
+npm run lint
+```
+
+This checks the project for TypeScript errors without generating output files.
+
+---
+
+# 📸 Screenshots
+
+## 🌌 Orbit
+
+<p align="center">
+  <img
+    src="docs/screenshots/orbit.png"
+    alt="NEXA Orbit — spatial social discovery"
+    width="100%"
+  />
+</p>
+
+> The traditional feed becomes a spatial Orbit where Moments appear as discoverable social nodes.
+
+---
+
+## 🪐 Living Spaces
+
+<p align="center">
+  <img
+    src="docs/screenshots/spaces.png"
+    alt="NEXA Living Spaces"
+    width="100%"
+  />
+</p>
+
+> Temporary social environments built around collaboration, creativity, learning and shared experiences.
+
+---
+
+## 🏆 Social Quests
+
+<p align="center">
+  <img
+    src="docs/screenshots/quests.png"
+    alt="NEXA Social Quests"
+    width="100%"
+  />
+</p>
+
+> Quests turn passive discovery into active social participation.
+
+---
+
+## 🌿 Memory Garden
+
+<p align="center">
+  <img
+    src="docs/screenshots/memories.png"
+    alt="NEXA Memory Garden"
+    width="100%"
+  />
+</p>
+
+> Meaningful Moments and interactions can become Memories instead of disappearing into an endless timeline.
+
+---
+
+## 🤖 Social Concierge
+
+<p align="center">
+  <img
+    src="docs/screenshots/concierge.png"
+    alt="NEXA Social Concierge"
+    width="100%"
+  />
+</p>
+
+> Concierge helps users navigate Moments, Spaces, Frequencies and social experiences.
+
+---
+
+# 🎤 Judge Demo Flow
+
+A short demo can communicate the NEXA concept quickly.
+
+## Step 1 — Open NEXA
+
+Start at the NEXA Orbit.
+
+Show:
+
+```text
+NO-FEED
+```
+
+Explain:
+
+> "NEXA isn't another infinite-scroll social platform. The starting point is an interactive social environment."
+
+---
+
+## Step 2 — Choose Intent
+
+Select an intent such as:
+
+```text
+🧭 Discover
+```
+
+Explain:
+
+> "Instead of starting with a feed, NEXA starts by asking what I want right now."
+
+---
+
+## Step 3 — Tune a Frequency
+
+Select a curiosity or Frequency.
+
+For example:
+
+```text
+#SpatialComputing
+```
+
+Show the Orbit responding to the selected context.
+
+---
+
+## Step 4 — Open a Moment
+
+Select a Moment.
+
+Explain:
+
+> "A Moment isn't just content. It's an invitation to participate."
+
+---
+
+## Step 5 — Demonstrate Resonance
+
+Use the Resonance interaction.
+
+Explain:
+
+> "Instead of a public Like count, NEXA uses Resonance as a more expressive response."
+
+---
+
+## Step 6 — Enter a Living Space
+
+Open a Space.
+
+Show:
+
+- Participants
+- Presence
+- Collective Goal
+- Collaboration
+
+Explain:
+
+> "Instead of joining a permanent group, you enter a temporary social environment built around an experience."
+
+---
+
+## Step 7 — Explore Connection
+
+Show the Echo Link / connection experience.
+
+Explain:
+
+> "Connection is presented as something that can emerge from meaningful interaction."
+
+---
+
+## Step 8 — Show Memories
+
+Open the Memory experience.
+
+Explain:
+
+> "Meaningful experiences don't have to disappear into an infinite feed."
+
+---
+
+## Step 9 — Show Aura
+
+Open:
+
+```text
+You → Aura
+```
+
+Explain:
+
+> "Instead of a static profile grid, NEXA represents identity as something that evolves through experiences."
+
+---
+
+## Step 10 — Use Concierge
+
+Open Concierge and ask:
+
+```text
+"What can I do right now?"
+```
+
+or:
+
+```text
+"Show me something unexpected."
+```
+
+Explain:
+
+> "Concierge acts as a social navigator rather than simply a chatbot."
+
+---
+
+# 🎯 Evaluation Alignment
+
+NEXA is designed around the core requirements of the Reimagine Social challenge.
+
+## Problem Alignment
+
+NEXA directly challenges:
+
+- Infinite feeds
+- Passive consumption
+- Popularity-driven discovery
+- Follower-centric relationships
+- Algorithm-first discovery
+
+The alternative is:
+
+```text
+Intent
+   ↓
+Exploration
+   ↓
+Participation
+   ↓
+Connection
+```
+
+---
+
+## UI / UX
+
+The interface uses:
+
+- Spatial discovery
+- Orbiting Moments
+- Intent controls
+- Contextual panels
+- Responsive navigation
+- Light and dark themes
+- Purposeful motion
+- Tactile interaction states
+
+The visual language is designed around the NEXA concept instead of copying an existing social platform.
+
+---
+
+## Functionality
+
+The prototype connects multiple experiences:
+
+- Orbit discovery
+- Grid discovery
+- Intent selection
+- Frequency selection
+- Moment exploration
+- Resonance interaction
+- Echo Links
+- Drift
+- Serendipity
+- Living Spaces
+- Collective Goals
+- Presence
+- Social Quests
+- Memories
+- Aura
+- People discovery
+- Concierge
+- Remix
+- Notifications
+- Search
+- Ghost Mode
+- Theme switching
+- Responsive navigation
+
+---
+
+## Innovation
+
+NEXA introduces a new social vocabulary:
+
+```text
+Feed       → Orbit
+Post       → Moment
+Like       → Resonance
+Follow     → Frequency
+Follower   → Echo Link
+Group      → Living Space
+Scroll     → Drift
+Trending   → Serendipity
+Profile    → Aura
+Archive    → Memory
+```
+
+The innovation is not any single feature.
+
+It is the attempt to connect these primitives into one coherent social model.
+
+---
+
+# 📊 Traditional Social vs NEXA
+
+## Traditional Social
+
+```text
+POST
+  ↓
+LIKE
+  ↓
+FOLLOW
+  ↓
+ALGORITHM
+  ↓
+FEED
+  ↓
+SCROLL
+  ↓
+REPEAT
+```
+
+## NEXA
+
+```text
+INTENT
+  ↓
+CURIOSITY
+  ↓
+EXPLORE
+  ↓
+RESONATE
+  ↓
+PARTICIPATE
+  ↓
+CONNECT
+  ↓
+CREATE
+  ↓
+REMEMBER
+```
+
+The difference is fundamentally about the user's role.
+
+```text
+Traditional:
+
+User → Consumer
+
+
+NEXA:
+
+User → Explorer → Participant → Contributor
+```
+
+---
+
+# 🧭 Design Principles
+
+## 01 — Intent Over Algorithm
+
+The user provides the first signal.
+
+## 02 — Participation Over Consumption
+
+Social experiences should lead somewhere.
+
+## 03 — Resonance Over Popularity
+
+Meaning matters more than public numbers.
+
+## 04 — Curiosity Over Filter Bubbles
+
+Discovery should sometimes surprise us.
+
+## 05 — Experience Over Profile
+
+People are more than their profile grids.
+
+## 06 — Connection Over Followers
+
+Relationships should emerge naturally.
+
+## 07 — Memory Over Metrics
+
+Meaningful experiences are worth preserving.
+
+---
+
+# 🧠 Product Philosophy
+
+NEXA is built around seven principles:
+
+```text
+WHAT DO I WANT?
+       ↓
+     INTENT
+
+WHAT AM I CURIOUS ABOUT?
+       ↓
+   FREQUENCY
+
+WHAT IS HAPPENING AROUND ME?
+       ↓
+     ORBIT
+
+WHAT RESONATES?
+       ↓
+    MOMENT
+
+WHAT CAN I PARTICIPATE IN?
+       ↓
+ PARTICIPATION
+
+WHO DID I CONNECT WITH?
+       ↓
+   ECHO LINK
+
+WHAT REMAINS?
+       ↓
+    MEMORY
+```
+
+This creates a different relationship between a person and a social platform.
 
 ---
 
 # 🔮 Future Roadmap
 
-## Phase 1 — Current Hackathon Prototype
+NEXA is currently a hackathon prototype.
+
+Future development could expand the concept into several directions.
+
+## Phase 1 — Current Prototype
 
 ```text
 Orbit
@@ -1875,7 +2071,7 @@ Remix
 
 ## Phase 2 — Realtime Social
 
-Potential future capabilities:
+Potential capabilities:
 
 - Realtime Spaces
 - Live Presence
@@ -1889,20 +2085,20 @@ Potential future capabilities:
 
 ## Phase 3 — Intelligent Discovery
 
-Potential future capabilities:
+Potential capabilities:
 
 - Semantic Moment matching
 - Context-aware discovery
 - Adaptive Frequencies
 - Intelligent Concierge
-- Better serendipity
+- Improved serendipity
 - Curiosity-based recommendations
 
 ---
 
 ## Phase 4 — IRL Orbit
 
-NEXA can eventually move beyond the screen.
+NEXA could eventually connect digital Moments with real-world experiences.
 
 ```text
 Online Moment
@@ -1928,7 +2124,7 @@ Potential applications:
 
 # 🌍 Long-Term Vision
 
-NEXA imagines a future where social technology is not primarily designed around:
+NEXA imagines social technology that is less focused on:
 
 ```text
 Attention
@@ -1937,7 +2133,7 @@ Followers
 Virality
 ```
 
-but around:
+and more focused on:
 
 ```text
 Curiosity
@@ -1961,105 +2157,26 @@ TO
 
 ---
 
-# 🧭 Design Principles
-
-### 01 — Intent Over Algorithm
-
-The user provides the first signal.
-
-### 02 — Participation Over Consumption
-
-Social experiences should lead somewhere.
-
-### 03 — Resonance Over Popularity
-
-Meaning matters more than public numbers.
-
-### 04 — Curiosity Over Filter Bubbles
-
-Discovery should sometimes surprise us.
-
-### 05 — Experience Over Profile
-
-People are more than their profile grids.
-
-### 06 — Connection Over Followers
-
-Relationships should emerge naturally.
-
-### 07 — Memory Over Metrics
-
-Meaningful experiences are worth preserving.
-
----
-
-# 📸 Screenshots
-
-## 🌌 Orbit
-
-<p align="center">
-  <img src="docs/screenshots/orbit.png" alt="NEXA Orbit — spatial social discovery" width="100%">
-</p>
-
-> The traditional feed becomes a spatial Orbit where Moments appear as discoverable social nodes.
-
----
-
-## 🪐 Living Spaces
-
-<p align="center">
-  <img src="docs/screenshots/spaces.png" alt="NEXA Living Spaces" width="100%">
-</p>
-
-> Enter temporary social environments built around collaboration, creativity, learning and shared experiences.
-
----
-
-## 🏆 Quests
-
-<p align="center">
-  <img src="docs/screenshots/quests.png" alt="NEXA Social Quests" width="100%">
-</p>
-
-> Quests turn passive browsing into active social participation.
-
----
-
-## 🌿 Memories
-
-<p align="center">
-  <img src="docs/screenshots/memories.png" alt="NEXA Memory Garden" width="100%">
-</p>
-
-> Meaningful Moments and interactions can become Memories instead of disappearing into an endless feed.
-
----
-
-## 🤖 Social Concierge
-
-<p align="center">
-  <img src="docs/screenshots/concierge.png" alt="NEXA Social Concierge" width="100%">
-</p>
-
-> Concierge acts as an intelligent social navigator, helping users discover Moments, Spaces, Frequencies and people.
-
----
-
----
-
 # 🧪 Project Status
 
-**Status: Hackathon Prototype**
+> **Status: Hackathon Prototype**
 
-NEXA is a frontend-focused prototype created to demonstrate a new social interaction model.
+NEXA is a frontend-focused prototype created to demonstrate an alternative social interaction model.
 
-The prototype uses mock/local data where appropriate so that the complete experience can be demonstrated reliably during judging.
+The prototype uses local/mock data where appropriate so that the experience can be demonstrated reliably during judging.
 
-The architecture is designed so that realtime services, persistent databases and production AI capabilities can be integrated in future iterations.
+The current architecture provides a foundation for future:
+
+- Realtime services
+- Persistent databases
+- Richer AI capabilities
+- Semantic discovery
+- Collaborative experiences
+- Production-scale infrastructure
 
 ---
 
-# 📦 Demo Checklist
+# 🧪 Demo Checklist
 
 Before presenting NEXA, verify:
 
@@ -2082,48 +2199,14 @@ Before presenting NEXA, verify:
 ☑ Mobile navigation works
 ☑ Responsive layouts work
 ☑ Hover states work
-☑ Buttons have feedback
+☑ Buttons provide feedback
 ☑ Forms work
-☑ Local state persists where intended
+☑ Local state behaves as expected
 ☑ No broken routes
-☑ No console errors
+☑ No unexpected console errors
 ☑ No horizontal overflow
 ☑ Favicon loads correctly
 ```
-
----
-
-# 👨‍💻 Team
-
-## Built Solo
-
-### Shivam Singh
-
-**Role:** Product Concept • UX/UI Design • Frontend Development • Interaction Design • Testing
-
-NEXA was designed, developed and presented as an **individual solo hackathon project**.
-
-```text
-Idea
- ↓
-Product Concept
- ↓
-Social Interaction Model
- ↓
-UX / UI Design
- ↓
-Frontend Development
- ↓
-Interaction Engineering
- ↓
-Responsive Design
- ↓
-Testing & Refinement
- ↓
-Final Submission
-```
-
-> **One builder. One vision. One new way to think about social.**
 
 ---
 
@@ -2137,6 +2220,26 @@ NEXA asks:
 
 > **"What do you want to experience right now?"**
 
+That difference defines the product.
+
+NEXA is not trying to make scrolling more entertaining.
+
+It is exploring whether social technology can make:
+
+```text
+Discovery
+   ↓
+Participation
+   ↓
+Connection
+   ↓
+Creation
+   ↓
+Memory
+```
+
+more intentional.
+
 ---
 
 # 🌌 NEXA
@@ -2146,9 +2249,13 @@ NEXA asks:
 > **Don't follow people. Follow moments.**
 
 <p align="center">
-  <strong>Built solo by Shivam Singh for The Frontend Odyssey 2026 — Frontend Arena.</strong>
+  <strong>
+    Built solo by Shivam Singh for The Frontend Odyssey 2026 — Frontend Arena.
+  </strong>
 </p>
 
 <p align="center">
-  <em>Intent → Curiosity → Resonance → Participation → Connection → Memory</em>
+  <em>
+    Intent → Curiosity → Resonance → Participation → Connection → Memory
+  </em>
 </p>

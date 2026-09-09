@@ -421,18 +421,20 @@ export const LivingSpaceDetail: React.FC = () => {
         <div className="pt-2">
           {/* Workspace Navigation Tabs */}
           <div className="flex items-center gap-2 border-b border-slate-200 dark:border-white/10 pb-3 mb-4 overflow-x-auto no-scrollbar">
-            {[
-              { id: 'canvas', label: 'Collaborative Canvas', icon: Sparkles, badge: space.canvasNotes.length },
-              { id: 'ideas', label: 'Idea Wall', icon: Lightbulb, badge: space.ideas.length },
-              { id: 'audio', label: 'Shared Audio Queue', icon: Music, badge: space.playlist.length },
-              { id: 'stream', label: 'Live Pulse & Stream', icon: Radio, badge: space.messages.length },
-            ].map((tab) => {
+            {(
+              [
+                { id: 'canvas', label: 'Collaborative Canvas', icon: Sparkles, badge: space.canvasNotes.length },
+                { id: 'ideas', label: 'Idea Wall', icon: Lightbulb, badge: space.ideas.length },
+                { id: 'audio', label: 'Shared Audio Queue', icon: Music, badge: space.playlist.length },
+                { id: 'stream', label: 'Live Pulse & Stream', icon: Radio, badge: space.messages.length },
+              ] as const
+            ).map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={`chip-interactive focus-ring flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold cursor-pointer whitespace-nowrap transition-all ${
                     isActive
                       ? 'bg-cyan-50 dark:bg-cyan-500/15 text-cyan-900 dark:text-white border border-cyan-500/40 dark:border-cyan-400/50 shadow-xs'

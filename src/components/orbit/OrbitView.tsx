@@ -1,8 +1,14 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import { useNexaStore } from '../../store/useNexaStore';
-import { OrbitNode } from './OrbitNode';
-import { Moment, SocialEnergy } from '../../types';
-import { Tooltip } from '../common/Tooltip';
+import React, {
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
+import { useNexaStore } from "../../store/useNexaStore";
+import { OrbitNode } from "./OrbitNode";
+import { Moment, SocialEnergy } from "../../types";
+import { Tooltip } from "../common/Tooltip";
 import {
   Radio,
   LayoutGrid,
@@ -17,60 +23,94 @@ import {
   Shuffle,
   Heart,
   Target,
-} from 'lucide-react';
+  ShieldCheck,
+} from "lucide-react";
 
-const SOCIAL_ENERGIES: { energy: SocialEnergy; label: string; icon: string; description: string }[] = [
-  { energy: 'Quiet', label: 'Quiet', icon: '🌱', description: 'Gentle spacing, slow drift, minimal pressure' },
-  { energy: 'Curious', label: 'Curious', icon: '🧭', description: 'Balanced orbit tuned to explore new signals' },
-  { energy: 'Social', label: 'Social', icon: '⚡', description: 'Vibrant communal spaces brought front and center' },
-  { energy: 'Creative', label: 'Creative', icon: '🎨', description: 'Co-creation spaces and open canvas sessions' },
-  { energy: 'Chaotic', label: 'Chaotic', icon: '🔥', description: 'Fast, unexpected, eclectic human moments' },
+const SOCIAL_ENERGIES: {
+  energy: SocialEnergy;
+  label: string;
+  icon: string;
+  description: string;
+}[] = [
+  {
+    energy: "Quiet",
+    label: "Quiet",
+    icon: "🌱",
+    description: "Gentle spacing, slow drift, minimal pressure",
+  },
+  {
+    energy: "Curious",
+    label: "Curious",
+    icon: "🧭",
+    description: "Balanced orbit tuned to explore new signals",
+  },
+  {
+    energy: "Social",
+    label: "Social",
+    icon: "⚡",
+    description: "Vibrant communal spaces brought front and center",
+  },
+  {
+    energy: "Creative",
+    label: "Creative",
+    icon: "🎨",
+    description: "Co-creation spaces and open canvas sessions",
+  },
+  {
+    energy: "Chaotic",
+    label: "Chaotic",
+    icon: "🔥",
+    description: "Fast, unexpected, eclectic human moments",
+  },
 ];
 
-const INTENT_BADGES: Record<string, { bg: string; text: string; border: string }> = {
+const INTENT_BADGES: Record<
+  string,
+  { bg: string; text: string; border: string }
+> = {
   CREATE: {
-    bg: 'bg-purple-100 dark:bg-purple-950/80',
-    text: 'text-purple-900 dark:text-purple-200',
-    border: 'border-purple-300 dark:border-purple-500/40',
+    bg: "bg-purple-100 dark:bg-purple-950/80",
+    text: "text-purple-900 dark:text-purple-200",
+    border: "border-purple-300 dark:border-purple-500/40",
   },
   CONNECT: {
-    bg: 'bg-sky-100 dark:bg-sky-950/80',
-    text: 'text-sky-900 dark:text-sky-200',
-    border: 'border-sky-300 dark:border-sky-500/40',
+    bg: "bg-sky-100 dark:bg-sky-950/80",
+    text: "text-sky-900 dark:text-sky-200",
+    border: "border-sky-300 dark:border-sky-500/40",
   },
   LEARN: {
-    bg: 'bg-indigo-100 dark:bg-indigo-950/80',
-    text: 'text-indigo-900 dark:text-indigo-200',
-    border: 'border-indigo-300 dark:border-indigo-500/40',
+    bg: "bg-indigo-100 dark:bg-indigo-950/80",
+    text: "text-indigo-900 dark:text-indigo-200",
+    border: "border-indigo-300 dark:border-indigo-500/40",
   },
   PLAY: {
-    bg: 'bg-amber-100 dark:bg-amber-950/80',
-    text: 'text-amber-900 dark:text-amber-200',
-    border: 'border-amber-300 dark:border-amber-500/40',
+    bg: "bg-amber-100 dark:bg-amber-950/80",
+    text: "text-amber-900 dark:text-amber-200",
+    border: "border-amber-300 dark:border-amber-500/40",
   },
   HELP: {
-    bg: 'bg-emerald-100 dark:bg-emerald-950/80',
-    text: 'text-emerald-900 dark:text-emerald-200',
-    border: 'border-emerald-300 dark:border-emerald-500/40',
+    bg: "bg-emerald-100 dark:bg-emerald-950/80",
+    text: "text-emerald-900 dark:text-emerald-200",
+    border: "border-emerald-300 dark:border-emerald-500/40",
   },
   DISCOVER: {
-    bg: 'bg-cyan-100 dark:bg-cyan-950/80',
-    text: 'text-cyan-950 dark:text-cyan-200',
-    border: 'border-cyan-300 dark:border-cyan-500/40',
+    bg: "bg-cyan-100 dark:bg-cyan-950/80",
+    text: "text-cyan-950 dark:text-cyan-200",
+    border: "border-cyan-300 dark:border-cyan-500/40",
   },
-  'JUST VIBE': {
-    bg: 'bg-rose-100 dark:bg-rose-950/80',
-    text: 'text-rose-900 dark:text-rose-200',
-    border: 'border-rose-300 dark:border-rose-500/40',
+  "JUST VIBE": {
+    bg: "bg-rose-100 dark:bg-rose-950/80",
+    text: "text-rose-900 dark:text-rose-200",
+    border: "border-rose-300 dark:border-rose-500/40",
   },
 };
 
 const getBadgeStyle = (intent: string) => {
   return (
     INTENT_BADGES[intent] || {
-      bg: 'bg-slate-100 dark:bg-slate-800',
-      text: 'text-slate-900 dark:text-slate-100',
-      border: 'border-slate-300 dark:border-slate-700',
+      bg: "bg-slate-100 dark:bg-slate-800",
+      text: "text-slate-900 dark:text-slate-100",
+      border: "border-slate-300 dark:border-slate-700",
     }
   );
 };
@@ -94,14 +134,19 @@ export const OrbitView: React.FC = () => {
     triggerSurpriseMe,
     toggleSessionMemory,
     presenceMode,
+    activeIntentContract,
+    toggleIntentContract,
   } = useNexaStore();
 
   const [hoveredMomentId, setHoveredMomentId] = useState<string | null>(null);
-  const [viewStyle, setViewStyle] = useState<'orbit' | 'grid'>('orbit');
-  const [orbitAngleOffset, setOrbitAngleOffset] = useState<number>(0);
+  const [viewStyle, setViewStyle] = useState<"orbit" | "grid">("orbit");
   const [isRotating, setIsRotating] = useState<boolean>(true);
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [isEnergyMenuOpen, setIsEnergyMenuOpen] = useState<boolean>(false);
+
+  // High-performance direct DOM references for 60fps rotation without React re-render cascades
+  const nodeElementsRef = useRef<Record<string, HTMLDivElement | null>>({});
+  const angleRef = useRef<number>(0);
 
   // Touch drag state
   const isDraggingRef = useRef(false);
@@ -114,63 +159,31 @@ export const OrbitView: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   // Compute rotation step based on Social Energy
   const rotationStep = useMemo(() => {
     switch (socialEnergy) {
-      case 'Quiet':
+      case "Quiet":
         return 0.05;
-      case 'Curious':
+      case "Curious":
         return 0.09;
-      case 'Creative':
+      case "Creative":
         return 0.14;
-      case 'Chaotic':
+      case "Chaotic":
         return 0.26;
-      case 'Social':
+      case "Social":
       default:
         return 0.12;
     }
   }, [socialEnergy]);
 
-  // Slowly rotate orbit nodes smoothly over time when not dragging
-  useEffect(() => {
-    if (!isRotating) return;
-    const interval = setInterval(() => {
-      if (!isDraggingRef.current) {
-        setOrbitAngleOffset((prev) => (prev + rotationStep) % 360);
-      }
-    }, 60);
-    return () => clearInterval(interval);
-  }, [isRotating, rotationStep]);
-
-  // Touch drag handlers to pan/rotate orbit
-  const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
-    isDraggingRef.current = true;
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    dragStartXRef.current = clientX;
-    initialAngleRef.current = orbitAngleOffset;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
-    if (!isDraggingRef.current) return;
-    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-    const deltaX = clientX - dragStartXRef.current;
-    // Map pixel delta to rotation angle
-    const newAngle = (initialAngleRef.current + deltaX * 0.35) % 360;
-    setOrbitAngleOffset(newAngle);
-  };
-
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
-  };
-
   // Filter moments according to Intent and Search
   const filteredMoments = useMemo(() => {
     const list = moments.filter((m) => {
-      if (selectedIntent !== 'ALL' && m.intent !== selectedIntent) {
+      if (selectedIntent !== "ALL" && m.intent !== selectedIntent) {
         return false;
       }
       if (searchQuery && searchQuery.trim()) {
@@ -178,13 +191,12 @@ export const OrbitView: React.FC = () => {
         return Boolean(
           m.title?.toLowerCase().includes(q) ||
           m.description?.toLowerCase().includes(q) ||
-          m.tags?.some((t) => t && t.toLowerCase().includes(q))
+          m.tags?.some((t) => t && t.toLowerCase().includes(q)),
         );
       }
       return true;
     });
 
-    // Requirement 14: On mobile screen sizes, show only 5-7 high-relevance nodes by default
     return list;
   }, [moments, selectedIntent, searchQuery]);
 
@@ -199,49 +211,133 @@ export const OrbitView: React.FC = () => {
   const radiusScale = useMemo(() => {
     const base = isMobile ? 0.85 : 1.0;
     let energyFactor = 1.0;
-    if (socialEnergy === 'Quiet') energyFactor = 1.15;
-    if (socialEnergy === 'Curious') energyFactor = 1.05;
-    if (socialEnergy === 'Chaotic') energyFactor = 0.88;
+    if (socialEnergy === "Quiet") energyFactor = 1.15;
+    if (socialEnergy === "Curious") energyFactor = 1.05;
+    if (socialEnergy === "Chaotic") energyFactor = 0.88;
 
     switch (orbitDensity) {
-      case 'compact':
+      case "compact":
         return base * 0.8 * energyFactor;
-      case 'deep_space':
+      case "deep_space":
         return base * 1.25 * energyFactor;
-      case 'balanced':
+      case "balanced":
       default:
         return base * energyFactor;
     }
   }, [orbitDensity, isMobile, socialEnergy]);
 
-  // Calculate (x, y) percent for each node relative to center (50, 50)
-  const nodePositions = useMemo(() => {
-    // Rings radiuses in percentages
-    const ringRadii: Record<number, number> = {
-      1: (isMobile ? 24 : 22) * radiusScale,
-      2: (isMobile ? 37 : 36) * radiusScale,
-      3: (isMobile ? 45 : 46) * radiusScale,
+  // Direct DOM position updater bypassing React reconciliation for zero frame-drops
+  const updateNodePositions = useCallback(
+    (angle: number) => {
+      const count = visibleMoments.length;
+      if (count === 0) return;
+      const angleStep = 360 / Math.max(1, count);
+
+      const ringRadii: Record<number, number> = {
+        1: (isMobile ? 24 : 22) * radiusScale,
+        2: (isMobile ? 37 : 36) * radiusScale,
+        3: (isMobile ? 45 : 46) * radiusScale,
+      };
+
+      visibleMoments.forEach((moment, index) => {
+        const el = nodeElementsRef.current[moment.id];
+        if (!el) return;
+        const baseAngle = index * angleStep + moment.orbitDistance * 25;
+        const currentAngle = ((baseAngle + angle) % 360) * (Math.PI / 180);
+        const r = ringRadii[moment.orbitDistance] || 32 * radiusScale;
+
+        const x = 50 + r * Math.cos(currentAngle);
+        const y = 50 + r * Math.sin(currentAngle) * (isMobile ? 0.95 : 0.88);
+
+        const clampedX = Math.max(
+          isMobile ? 14 : 8,
+          Math.min(isMobile ? 86 : 92, x),
+        );
+        const clampedY = Math.max(
+          isMobile ? 14 : 10,
+          Math.min(isMobile ? 86 : 90, y),
+        );
+
+        el.style.left = `${clampedX}%`;
+        el.style.top = `${clampedY}%`;
+      });
+    },
+    [visibleMoments, radiusScale, isMobile],
+  );
+
+  // Sync positions whenever visibleMoments, scale, or layout changes
+  useEffect(() => {
+    updateNodePositions(angleRef.current);
+  }, [updateNodePositions]);
+
+  // RequestAnimationFrame rotation loop with user motion preference respect and cleanup
+  useEffect(() => {
+    if (viewStyle !== "orbit") return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion || !isRotating) {
+      updateNodePositions(angleRef.current);
+      return;
+    }
+
+    let animationFrameId: number;
+    let lastTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const delta = currentTime - lastTime;
+      lastTime = currentTime;
+
+      if (isRotating && !isDraggingRef.current) {
+        // Delta normalized to 16.6ms for smooth constant speed across all refresh rates (60/120Hz)
+        const frameStep = rotationStep * Math.min(2.5, delta / 16.6);
+        angleRef.current = (angleRef.current + frameStep) % 360;
+        updateNodePositions(angleRef.current);
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
     };
 
-    const count = visibleMoments.length;
-    return visibleMoments.map((moment, index) => {
-      // Distribute evenly around their ring so nodes never overlap
-      const angleStep = 360 / Math.max(1, count);
-      const baseAngle = index * angleStep + (moment.orbitDistance * 25);
-      const currentAngle = (baseAngle + orbitAngleOffset) * (Math.PI / 180);
-      const r = ringRadii[moment.orbitDistance] || 32 * radiusScale;
+    animationFrameId = requestAnimationFrame(animate);
 
-      // Keep inside boundary
-      const x = 50 + r * Math.cos(currentAngle);
-      const y = 50 + r * Math.sin(currentAngle) * (isMobile ? 0.95 : 0.88);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isRotating, rotationStep, viewStyle, updateNodePositions]);
 
-      return {
-        moment,
-        x: Math.max(isMobile ? 14 : 8, Math.min(isMobile ? 86 : 92, x)),
-        y: Math.max(isMobile ? 14 : 10, Math.min(isMobile ? 86 : 90, y)),
-      };
-    });
-  }, [visibleMoments, orbitAngleOffset, radiusScale, isMobile]);
+  // Touch & Pointer drag handlers to manually rotate the orbit
+  const handleTouchStart = (e: React.TouchEvent | React.MouseEvent) => {
+    isDraggingRef.current = true;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    dragStartXRef.current = clientX;
+    initialAngleRef.current = angleRef.current;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent | React.MouseEvent) => {
+    if (!isDraggingRef.current) return;
+    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    const deltaX = clientX - dragStartXRef.current;
+    angleRef.current = (initialAngleRef.current + deltaX * 0.35) % 360;
+    updateNodePositions(angleRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+  };
+
+  // Memoized callbacks preventing OrbitNode re-render cascades
+  const handleHoverMoment = useCallback((id: string | null) => {
+    setHoveredMomentId(id);
+  }, []);
+
+  const handleClickMoment = useCallback(
+    (m: Moment) => {
+      inspectMoment(m.id);
+    },
+    [inspectMoment],
+  );
 
   return (
     <div className="relative min-h-[calc(100vh-7.5rem)] w-full overflow-hidden bg-[var(--bg-app)] transition-colors duration-200">
@@ -259,22 +355,28 @@ export const OrbitView: React.FC = () => {
                 {filteredMoments.length}
               </span>
               <span className="text-slate-600 dark:text-slate-400 font-medium">
-                {isMobile ? 'nearby' : 'moments in orbit'}
+                {isMobile ? "nearby" : "moments in orbit"}
               </span>
             </div>
 
             {/* Pause / Play auto-spin */}
-            <Tooltip content={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}>
+            <Tooltip
+              content={isRotating ? "Pause rotation" : "Resume orbit rotation"}
+            >
               <button
                 onClick={() => setIsRotating(!isRotating)}
-                aria-label={isRotating ? 'Pause rotation' : 'Resume orbit rotation'}
+                aria-label={
+                  isRotating ? "Pause rotation" : "Resume orbit rotation"
+                }
                 className={`flex h-8 w-8 items-center justify-center rounded-full border text-xs transition-all icon-btn focus-ring cursor-pointer shrink-0 ${
                   isRotating
-                    ? 'border-cyan-500 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold shadow-xs'
-                    : 'border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                    ? "border-cyan-500 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 font-bold shadow-xs"
+                    : "border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                 }`}
               >
-                <RotateCw className={`h-3.5 w-3.5 ${isRotating ? 'animate-spin-slow' : ''}`} />
+                <RotateCw
+                  className={`h-3.5 w-3.5 ${isRotating ? "animate-spin-slow" : ""}`}
+                />
               </button>
             </Tooltip>
           </div>
@@ -282,24 +384,24 @@ export const OrbitView: React.FC = () => {
           {/* View Switcher: Orbit Canvas vs Grid */}
           <div className="flex shrink-0 items-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] p-1 shadow-xs ml-auto">
             <button
-              onClick={() => setViewStyle('orbit')}
+              onClick={() => setViewStyle("orbit")}
               title="Spatial Orbit"
               className={`chip-interactive focus-ring flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold cursor-pointer ${
-                viewStyle === 'orbit'
-                  ? 'bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                viewStyle === "orbit"
+                  ? "bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <Radio className="h-3.5 w-3.5 shrink-0" />
               <span className="hidden sm:inline">Orbit</span>
             </button>
             <button
-              onClick={() => setViewStyle('grid')}
+              onClick={() => setViewStyle("grid")}
               title="Grid View"
               className={`chip-interactive focus-ring flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold cursor-pointer ${
-                viewStyle === 'grid'
-                  ? 'bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
+                viewStyle === "grid"
+                  ? "bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <LayoutGrid className="h-3.5 w-3.5 shrink-0" />
@@ -324,8 +426,8 @@ export const OrbitView: React.FC = () => {
                     onClick={() => setSocialEnergy(se.energy)}
                     className={`chip-interactive focus-ring flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold cursor-pointer shrink-0 ${
                       isSelected
-                        ? 'bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs'
-                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-white/[0.04]'
+                        ? "bg-slate-900 dark:bg-cyan-500 text-white dark:text-slate-950 shadow-xs"
+                        : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/60 dark:hover:bg-white/[0.04]"
                     }`}
                   >
                     <span className="shrink-0">{se.icon}</span>
@@ -337,6 +439,24 @@ export const OrbitView: React.FC = () => {
           </div>
 
           <div className="h-4 w-px bg-slate-300 dark:bg-slate-700 shrink-0 mx-1 hidden sm:block" />
+
+          {/* Social Intent Contract Button */}
+          <button
+            onClick={() => toggleIntentContract(true)}
+            title="Define your temporary social intention for this session (Anti-Feed)"
+            className={`btn-press shrink-0 focus-ring flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold shadow-xs cursor-pointer transition-all ${
+              activeIntentContract
+                ? "border-cyan-500 bg-cyan-50 dark:bg-cyan-950/60 text-cyan-900 dark:text-cyan-200 ring-1 ring-cyan-500/40"
+                : "border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0c1224] text-slate-800 dark:text-slate-200 hover:border-cyan-500 dark:hover:border-cyan-400"
+            }`}
+          >
+            <ShieldCheck className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400 shrink-0" />
+            <span>
+              {activeIntentContract
+                ? activeIntentContract.label
+                : "Intent Contract"}
+            </span>
+          </button>
 
           {/* Frequencies Tuning */}
           <button
@@ -381,7 +501,7 @@ export const OrbitView: React.FC = () => {
       </div>
 
       {/* Orbit Hero Arena */}
-      {viewStyle === 'orbit' ? (
+      {viewStyle === "orbit" ? (
         <div
           className="relative mx-auto h-[74vh] sm:h-[78vh] w-full max-w-5xl select-none touch-none"
           onTouchStart={handleTouchStart}
@@ -427,7 +547,7 @@ export const OrbitView: React.FC = () => {
                 style={{
                   width: `${92 * radiusScale}%`,
                   height: `${92 * radiusScale * (isMobile ? 0.95 : 0.88)}%`,
-                  margin: 'auto',
+                  margin: "auto",
                 }}
               >
                 <div className="h-full w-full animate-spin-slow origin-center bg-[conic-gradient(from_0deg,transparent_0deg,transparent_280deg,rgba(6,182,212,0.08)_360deg)]" />
@@ -442,7 +562,7 @@ export const OrbitView: React.FC = () => {
             className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer text-center group touch-manipulation focus-ring rounded-full"
             onClick={() => openCreateMoment(true)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
+              if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
                 openCreateMoment(true);
               }
@@ -450,29 +570,31 @@ export const OrbitView: React.FC = () => {
             title={`You are at the center of NEXA Orbit (${socialEnergy} Energy, ${presenceMode} Mode) — Tap to launch a moment`}
             aria-label={`Launch moment. You are at the center of NEXA Orbit, ${socialEnergy} Energy, ${presenceMode} Mode`}
           >
-            <div className={`relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 bg-white dark:bg-[#0b1026] shadow-lg transition-all duration-200 group-hover:scale-105 active:scale-95 ${
-              socialEnergy === 'Quiet'
-                ? 'border-emerald-500 shadow-emerald-500/25'
-                : socialEnergy === 'Curious'
-                ? 'border-cyan-500 shadow-cyan-500/25'
-                : socialEnergy === 'Creative'
-                ? 'border-purple-500 shadow-purple-500/25'
-                : socialEnergy === 'Chaotic'
-                ? 'border-rose-500 shadow-rose-500/25'
-                : 'border-amber-500 shadow-amber-500/25'
-            }`}>
+            <div
+              className={`relative flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full border-2 bg-white dark:bg-[#0b1026] shadow-lg transition-all duration-200 group-hover:scale-105 active:scale-95 ${
+                socialEnergy === "Quiet"
+                  ? "border-emerald-500 shadow-emerald-500/25"
+                  : socialEnergy === "Curious"
+                    ? "border-cyan-500 shadow-cyan-500/25"
+                    : socialEnergy === "Creative"
+                      ? "border-purple-500 shadow-purple-500/25"
+                      : socialEnergy === "Chaotic"
+                        ? "border-rose-500 shadow-rose-500/25"
+                        : "border-amber-500 shadow-amber-500/25"
+              }`}
+            >
               {/* Dynamic Aura Ring */}
               <div
                 className={`absolute -inset-2 rounded-full border animate-pulse pointer-events-none ${
-                  socialEnergy === 'Quiet'
-                    ? 'border-emerald-400/40 bg-emerald-500/5'
-                    : socialEnergy === 'Curious'
-                    ? 'border-cyan-400/40 bg-cyan-500/5'
-                    : socialEnergy === 'Creative'
-                    ? 'border-purple-400/40 bg-purple-500/5'
-                    : socialEnergy === 'Chaotic'
-                    ? 'border-rose-400/40 bg-rose-500/5'
-                    : 'border-amber-400/40 bg-amber-500/5'
+                  socialEnergy === "Quiet"
+                    ? "border-emerald-400/40 bg-emerald-500/5"
+                    : socialEnergy === "Curious"
+                      ? "border-cyan-400/40 bg-cyan-500/5"
+                      : socialEnergy === "Creative"
+                        ? "border-purple-400/40 bg-purple-500/5"
+                        : socialEnergy === "Chaotic"
+                          ? "border-rose-400/40 bg-rose-500/5"
+                          : "border-amber-400/40 bg-amber-500/5"
                 }`}
               />
               {isGhostMode ? (
@@ -487,7 +609,7 @@ export const OrbitView: React.FC = () => {
             </div>
             <div className="mt-1.5 flex flex-col items-center gap-0.5">
               <span className="rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase shadow-xs">
-                {isGhostMode ? 'GHOST' : 'YOU'}
+                {isGhostMode ? "GHOST" : "YOU"}
               </span>
               <span className="text-[9px] font-semibold text-cyan-700 dark:text-cyan-400">
                 {presenceMode}
@@ -496,17 +618,45 @@ export const OrbitView: React.FC = () => {
           </div>
 
           {/* Orbit Moment Nodes */}
-          {nodePositions.map(({ moment, x, y }) => (
-            <OrbitNode
-              key={moment.id}
-              moment={moment}
-              x={x}
-              y={y}
-              isHovered={hoveredMomentId === moment.id}
-              onHover={setHoveredMomentId}
-              onClick={(m) => inspectMoment(m.id)}
-            />
-          ))}
+          {visibleMoments.map((moment, index) => {
+            const count = visibleMoments.length;
+            const angleStep = 360 / Math.max(1, count);
+            const baseAngle = index * angleStep + moment.orbitDistance * 25;
+            const currentAngle =
+              ((baseAngle + angleRef.current) % 360) * (Math.PI / 180);
+            const ringRadii: Record<number, number> = {
+              1: (isMobile ? 24 : 22) * radiusScale,
+              2: (isMobile ? 37 : 36) * radiusScale,
+              3: (isMobile ? 45 : 46) * radiusScale,
+            };
+            const r = ringRadii[moment.orbitDistance] || 32 * radiusScale;
+            const x = Math.max(
+              isMobile ? 14 : 8,
+              Math.min(isMobile ? 86 : 92, 50 + r * Math.cos(currentAngle)),
+            );
+            const y = Math.max(
+              isMobile ? 14 : 10,
+              Math.min(
+                isMobile ? 86 : 90,
+                50 + r * Math.sin(currentAngle) * (isMobile ? 0.95 : 0.88),
+              ),
+            );
+
+            return (
+              <OrbitNode
+                key={moment.id}
+                ref={(el) => {
+                  nodeElementsRef.current[moment.id] = el;
+                }}
+                moment={moment}
+                x={x}
+                y={y}
+                isHovered={hoveredMomentId === moment.id}
+                onHover={handleHoverMoment}
+                onClick={handleClickMoment}
+              />
+            );
+          })}
 
           {/* Clean Empty State */}
           {filteredMoments.length === 0 && (
@@ -535,11 +685,14 @@ export const OrbitView: React.FC = () => {
             <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20">
               <button
                 id="mobile-explore-more-btn"
-                onClick={() => setViewStyle('grid')}
+                onClick={() => setViewStyle("grid")}
                 className="flex items-center gap-1.5 rounded-full border border-cyan-500/40 bg-white/95 dark:bg-[#070c1d]/95 px-3.5 py-1.5 text-xs font-semibold text-cyan-700 dark:text-cyan-300 shadow-lg shadow-cyan-500/10 backdrop-blur-md transition-all active:scale-95"
               >
                 <Compass className="h-3.5 w-3.5" />
-                <span>Explore more ({filteredMoments.length - visibleMoments.length}+)</span>
+                <span>
+                  Explore more ({filteredMoments.length - visibleMoments.length}
+                  +)
+                </span>
               </button>
             </div>
           )}
@@ -578,15 +731,15 @@ export const OrbitView: React.FC = () => {
                     tabIndex={0}
                     onClick={() => inspectMoment(moment.id)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
+                      if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
                         inspectMoment(moment.id);
                       }
                     }}
                     className={`group cursor-pointer flex flex-col justify-between rounded-2xl border p-5 sm:p-5.5 card-interactive focus-ring transition-all duration-200 ${
                       isSelected
-                        ? 'border-cyan-500 ring-2 ring-cyan-500 bg-cyan-50/50 dark:border-cyan-400 dark:ring-cyan-400 dark:bg-slate-900 shadow-md'
-                        : 'border-slate-300 dark:border-slate-700/80 bg-white dark:bg-[#0c1224] hover:border-cyan-500 dark:hover:border-cyan-400 hover:shadow-md dark:hover:shadow-cyan-950/40 shadow-xs'
+                        ? "border-cyan-500 ring-2 ring-cyan-500 bg-cyan-50/50 dark:border-cyan-400 dark:ring-cyan-400 dark:bg-slate-900 shadow-md"
+                        : "border-slate-300 dark:border-slate-700/80 bg-white dark:bg-[#0c1224] hover:border-cyan-500 dark:hover:border-cyan-400 hover:shadow-md dark:hover:shadow-cyan-950/40 shadow-xs"
                     }`}
                   >
                     <div className="min-w-0">

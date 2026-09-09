@@ -23,6 +23,7 @@ import { SessionMemoryModal } from './components/common/SessionMemoryModal';
 import { EchoLinkCelebration } from './components/common/EchoLinkCelebration';
 import { KeyboardShortcutsModal } from './components/common/KeyboardShortcutsModal';
 import { UniversalSearchModal } from './components/common/UniversalSearchModal';
+import { IntentContractModal } from './components/orbit/IntentContractModal';
 
 export default function App() {
   const {
@@ -38,6 +39,7 @@ export default function App() {
     toggleSessionMemory,
     toggleShortcutsHelp,
     toggleUniversalSearch,
+    toggleIntentContract,
     setCelebratingEchoLink,
   } = useNexaStore();
 
@@ -70,6 +72,7 @@ export default function App() {
         toggleSessionMemory(false);
         toggleShortcutsHelp(false);
         toggleUniversalSearch(false);
+        toggleIntentContract(false);
         setCelebratingEchoLink(null);
         return;
       }
@@ -176,6 +179,7 @@ export default function App() {
       <EchoLinkCelebration />
       <KeyboardShortcutsModal />
       <UniversalSearchModal />
+      <IntentContractModal />
       <ToastContainer />
     </div>
   );

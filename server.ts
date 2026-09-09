@@ -50,7 +50,12 @@ app.post("/api/concierge", async (req, res) => {
       return res.json({
         success: true,
         source: "local-heuristic",
-        response: generateFallbackConciergeResponse(action, query, intent, context),
+        response: generateFallbackConciergeResponse(
+          action,
+          query,
+          intent,
+          context,
+        ),
       });
     }
 
@@ -87,25 +92,39 @@ Keep answers conversational, empathetic, concise, and actionable. Format with cl
     return res.json({
       success: true,
       source: "gemini",
-      response: response.text || "I found some great active moments for you in the Orbit.",
+      response:
+        response.text ||
+        "I found some great active moments for you in the Orbit.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Gemini Concierge API error:", error);
     // Graceful fallback
     const { action, query, intent, context } = req.body;
     return res.json({
       success: true,
       source: "fallback",
-      response: generateFallbackConciergeResponse(action, query, intent, context),
+      response: generateFallbackConciergeResponse(
+        action,
+        query,
+        intent,
+        context,
+      ),
     });
   }
 });
+
+interface ConciergeContext {
+  spaceTitle?: string;
+  moments?: Array<{ id: string; title: string; intent?: string }>;
+  ideas?: Array<{ id: string; title: string; author?: string }>;
+  activities?: Array<{ id: string; text?: string; user?: string }>;
+}
 
 function generateFallbackConciergeResponse(
   action: string,
   query?: string,
   intent?: string,
-  context?: any
+  context?: ConciergeContext,
 ): string {
   const currentIntent = intent || "CONNECT";
   if (action === "icebreaker") {
@@ -129,7 +148,12 @@ function generateFallbackConciergeResponse(
 
 Tip: You can enter in Ghost Mode (🌫️ Anonymous) if you prefer to observe first before sharing your shots!`;
   }
-  if (query && (query.toLowerCase().includes("code") || query.toLowerCase().includes("react") || query.toLowerCase().includes("build"))) {
+  if (
+    query &&
+    (query.toLowerCase().includes("code") ||
+      query.toLowerCase().includes("react") ||
+      query.toLowerCase().includes("build"))
+  ) {
     return `Great energy for building. In your Orbit right now:
 • "Let's build something" — 8 developers & designers in a collaborative scratchpad
 • "Late Night Hackers Room" — 12 active builders sharing snippets

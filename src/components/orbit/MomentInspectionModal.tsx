@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNexaStore } from '../../store/useNexaStore';
-import { EchoType } from '../../types';
+import React, { useState, useRef, useEffect } from "react";
+import { useNexaStore } from "../../store/useNexaStore";
+import { EchoType } from "../../types";
 import {
   X,
   Clock,
@@ -13,62 +13,65 @@ import {
   Anchor,
   Compass,
   Check,
-} from 'lucide-react';
+} from "lucide-react";
 
-const INTENT_BADGES: Record<string, { bg: string; text: string; border: string }> = {
+const INTENT_BADGES: Record<
+  string,
+  { bg: string; text: string; border: string }
+> = {
   CREATE: {
-    bg: 'bg-purple-100 dark:bg-purple-950/80',
-    text: 'text-purple-900 dark:text-purple-200',
-    border: 'border-purple-300 dark:border-purple-500/40',
+    bg: "bg-purple-100 dark:bg-purple-950/80",
+    text: "text-purple-900 dark:text-purple-200",
+    border: "border-purple-300 dark:border-purple-500/40",
   },
   CONNECT: {
-    bg: 'bg-sky-100 dark:bg-sky-950/80',
-    text: 'text-sky-900 dark:text-sky-200',
-    border: 'border-sky-300 dark:border-sky-500/40',
+    bg: "bg-sky-100 dark:bg-sky-950/80",
+    text: "text-sky-900 dark:text-sky-200",
+    border: "border-sky-300 dark:border-sky-500/40",
   },
   LEARN: {
-    bg: 'bg-indigo-100 dark:bg-indigo-950/80',
-    text: 'text-indigo-900 dark:text-indigo-200',
-    border: 'border-indigo-300 dark:border-indigo-500/40',
+    bg: "bg-indigo-100 dark:bg-indigo-950/80",
+    text: "text-indigo-900 dark:text-indigo-200",
+    border: "border-indigo-300 dark:border-indigo-500/40",
   },
   PLAY: {
-    bg: 'bg-amber-100 dark:bg-amber-950/80',
-    text: 'text-amber-900 dark:text-amber-200',
-    border: 'border-amber-300 dark:border-amber-500/40',
+    bg: "bg-amber-100 dark:bg-amber-950/80",
+    text: "text-amber-900 dark:text-amber-200",
+    border: "border-amber-300 dark:border-amber-500/40",
   },
   HELP: {
-    bg: 'bg-emerald-100 dark:bg-emerald-950/80',
-    text: 'text-emerald-900 dark:text-emerald-200',
-    border: 'border-emerald-300 dark:border-emerald-500/40',
+    bg: "bg-emerald-100 dark:bg-emerald-950/80",
+    text: "text-emerald-900 dark:text-emerald-200",
+    border: "border-emerald-300 dark:border-emerald-500/40",
   },
   DISCOVER: {
-    bg: 'bg-cyan-100 dark:bg-cyan-950/80',
-    text: 'text-cyan-950 dark:text-cyan-200',
-    border: 'border-cyan-300 dark:border-cyan-500/40',
+    bg: "bg-cyan-100 dark:bg-cyan-950/80",
+    text: "text-cyan-950 dark:text-cyan-200",
+    border: "border-cyan-300 dark:border-cyan-500/40",
   },
-  'JUST VIBE': {
-    bg: 'bg-rose-100 dark:bg-rose-950/80',
-    text: 'text-rose-900 dark:text-rose-200',
-    border: 'border-rose-300 dark:border-rose-500/40',
+  "JUST VIBE": {
+    bg: "bg-rose-100 dark:bg-rose-950/80",
+    text: "text-rose-900 dark:text-rose-200",
+    border: "border-rose-300 dark:border-rose-500/40",
   },
 };
 
 const getBadgeStyle = (intent: string) => {
   return (
     INTENT_BADGES[intent] || {
-      bg: 'bg-slate-100 dark:bg-slate-800',
-      text: 'text-slate-900 dark:text-slate-100',
-      border: 'border-slate-300 dark:border-slate-700',
+      bg: "bg-slate-100 dark:bg-slate-800",
+      text: "text-slate-900 dark:text-slate-100",
+      border: "border-slate-300 dark:border-slate-700",
     }
   );
 };
 
 const ECHOES: { type: EchoType; label: string; icon: string }[] = [
-  { type: 'SAME', label: 'Same', icon: '🫂' },
-  { type: 'INSPIRED', label: 'Inspired', icon: '⚡' },
-  { type: 'CURIOUS', label: 'Curious', icon: '🔮' },
-  { type: 'FELT THIS', label: 'Felt This', icon: '💜' },
-  { type: 'I CAN HELP', label: 'Can Help', icon: '🛟' },
+  { type: "SAME", label: "Same", icon: "🫂" },
+  { type: "INSPIRED", label: "Inspired", icon: "⚡" },
+  { type: "CURIOUS", label: "Curious", icon: "🔮" },
+  { type: "FELT THIS", label: "Felt This", icon: "💜" },
+  { type: "I CAN HELP", label: "Can Help", icon: "🛟" },
 ];
 
 export const MomentInspectionModal: React.FC = () => {
@@ -85,6 +88,8 @@ export const MomentInspectionModal: React.FC = () => {
     openSpace,
     saveMemory,
     addToast,
+    socialEnergy,
+    activeIntentContract,
   } = useNexaStore();
 
   const [showEchoPicker, setShowEchoPicker] = useState(false);
@@ -92,12 +97,24 @@ export const MomentInspectionModal: React.FC = () => {
   const [resonanceCharge, setResonanceCharge] = useState(0);
   const holdIntervalRef = useRef<number | null>(null);
 
+  // Clean up resonance timer on unmount
+  useEffect(() => {
+    return () => {
+      if (holdIntervalRef.current) {
+        clearInterval(holdIntervalRef.current);
+        holdIntervalRef.current = null;
+      }
+    };
+  }, []);
+
   if (!inspectingMomentId) return null;
 
   const moment = moments.find((m) => m.id === inspectingMomentId);
   if (!moment) return null;
 
-  const isAnchored = anchoredMomentIds.includes(moment.id) || moment.lifecycleStatus === 'Anchored';
+  const isAnchored =
+    anchoredMomentIds.includes(moment.id) ||
+    moment.lifecycleStatus === "Anchored";
   const existingUserResonance = userResonances[moment.id];
 
   // Press and hold tactile resonance mechanics
@@ -132,10 +149,10 @@ export const MomentInspectionModal: React.FC = () => {
   };
 
   const getChargeIntensityLabel = (charge: number) => {
-    if (charge >= 85) return 'Transcendent Resonance';
-    if (charge >= 60) return 'Deep Resonance';
-    if (charge >= 35) return 'Harmonic Resonance';
-    return 'Gentle Resonance';
+    if (charge >= 85) return "Transcendent Resonance";
+    if (charge >= 60) return "Deep Resonance";
+    if (charge >= 35) return "Harmonic Resonance";
+    return "Gentle Resonance";
   };
 
   const handleJoin = () => {
@@ -145,9 +162,9 @@ export const MomentInspectionModal: React.FC = () => {
 
   const handleShare = () => {
     navigator.clipboard?.writeText(
-      `Join "${moment.title}" on NEXA: Don't follow people. Follow moments.`
+      `Join "${moment.title}" on NEXA: Don't follow people. Follow moments.`,
     );
-    addToast('Moment link copied to clipboard', 'info');
+    addToast("Moment link copied to clipboard", "info");
   };
 
   const handleSave = () => {
@@ -155,16 +172,20 @@ export const MomentInspectionModal: React.FC = () => {
       spaceTitle: moment.title,
       summary: moment.description,
       keyArtifacts: [
-        { type: 'text', title: 'Activity', content: moment.currentActivity },
+        { type: "text", title: "Activity", content: moment.currentActivity },
       ],
       collaborators: [
-        { name: moment.creator.name, avatar: moment.creator.avatar, isGhost: moment.creator.isGhost },
+        {
+          name: moment.creator.name,
+          avatar: moment.creator.avatar,
+          isGhost: moment.creator.isGhost,
+        },
       ],
       tags: moment.tags,
       coordinates: { x: moment.orbitAngle, y: moment.orbitDistance * 30 },
-      preservedAt: 'Just now',
+      preservedAt: "Just now",
     });
-    addToast('Preserved to Memory Garden', 'success');
+    addToast("Preserved to Memory Garden", "success");
   };
 
   return (
@@ -183,7 +204,9 @@ export const MomentInspectionModal: React.FC = () => {
         {serendipityMomentId === moment.id && (
           <div className="mb-3 flex items-center gap-1.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 px-3 py-1.5 text-xs text-cyan-800 dark:text-cyan-200">
             <Sparkles className="h-3.5 w-3.5 text-cyan-500 shrink-0" />
-            <span>Serendipity discovery: Pulled outside your usual frequencies</span>
+            <span>
+              Serendipity discovery: Pulled outside your usual frequencies
+            </span>
           </div>
         )}
 
@@ -237,7 +260,12 @@ export const MomentInspectionModal: React.FC = () => {
             alt={moment.creator.name}
             className="h-5 w-5 rounded-full object-cover border border-slate-300 dark:border-slate-700"
           />
-          <span>Created by <strong className="text-slate-900 dark:text-slate-100 font-bold">{moment.creator.name}</strong></span>
+          <span>
+            Created by{" "}
+            <strong className="text-slate-900 dark:text-slate-100 font-bold">
+              {moment.creator.name}
+            </strong>
+          </span>
         </div>
 
         {/* Short 1-2 sentence description */}
@@ -256,12 +284,45 @@ export const MomentInspectionModal: React.FC = () => {
           </span>
         </div>
 
+        {/* Transparent Human Matching Context: "Why this moment?" */}
+        <div className="mt-3 rounded-xl bg-cyan-500/5 dark:bg-cyan-500/10 border border-cyan-500/20 p-3 text-xs">
+          <div className="flex items-center gap-1.5 font-semibold text-cyan-800 dark:text-cyan-300 mb-1">
+            <Compass className="h-3.5 w-3.5 text-cyan-600 dark:text-cyan-400" />
+            <span>Why this moment is in your Orbit</span>
+          </div>
+          <div className="text-slate-600 dark:text-slate-300 leading-relaxed text-[11px] space-y-0.5">
+            {activeIntentContract &&
+              activeIntentContract.id.toUpperCase().includes(moment.intent) && (
+                <p className="text-cyan-700 dark:text-cyan-300 font-semibold">
+                  • Matches your active Intent Contract (
+                  {activeIntentContract.label})
+                </p>
+              )}
+            <p>
+              • Placed on <strong>Ring {moment.orbitDistance}</strong> (
+              {moment.orbitDistance === 1
+                ? "Inner Circle — immediate communal proximity"
+                : moment.orbitDistance === 2
+                  ? "Mid Orbit — harmonic resonance with your frequency"
+                  : "Outer Horizon — serendipitous human discovery"}
+              )
+            </p>
+            <p>
+              • Calibrated for <strong>{socialEnergy} Social Energy</strong>{" "}
+              without algorithmic amplification or engagement-baiting.
+            </p>
+          </div>
+        </div>
+
         {/* Private User Resonance Status (if user already resonated) */}
         {existingUserResonance && !isHoldingResonance && (
           <div className="mt-3 flex items-center justify-between rounded-xl bg-purple-500/10 border border-purple-500/20 px-3 py-2 text-xs">
             <span className="flex items-center gap-1.5 text-purple-800 dark:text-purple-300 font-medium">
               <Sparkles className="h-3.5 w-3.5 text-purple-500" />
-              <span>Your Resonance: <strong>{existingUserResonance.intensity}</strong></span>
+              <span>
+                Your Resonance:{" "}
+                <strong>{existingUserResonance.intensity}</strong>
+              </span>
             </span>
             <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
               Recorded privately
@@ -280,7 +341,9 @@ export const MomentInspectionModal: React.FC = () => {
               <span className="font-bold text-cyan-300">
                 {getChargeIntensityLabel(resonanceCharge)}
               </span>
-              <span className="font-mono text-cyan-400 font-bold">{resonanceCharge}%</span>
+              <span className="font-mono text-cyan-400 font-bold">
+                {resonanceCharge}%
+              </span>
             </div>
             <div className="relative z-10 text-[10px] text-slate-300 mt-0.5">
               Hold to deepen resonance... release to forge Echo Link
@@ -301,7 +364,9 @@ export const MomentInspectionModal: React.FC = () => {
                 className="chip-interactive focus-ring flex flex-col items-center gap-0.5 rounded-lg p-1.5 text-xs hover:bg-white dark:hover:bg-white/10 cursor-pointer"
               >
                 <span className="text-base">{echo.icon}</span>
-                <span className="text-[10px] text-slate-600 dark:text-slate-400">{echo.label}</span>
+                <span className="text-[10px] text-slate-600 dark:text-slate-400">
+                  {echo.label}
+                </span>
               </button>
             ))}
           </div>
@@ -329,13 +394,17 @@ export const MomentInspectionModal: React.FC = () => {
               onTouchEnd={() => stopResonanceHold()}
               className={`focus-ring flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold transition-all select-none cursor-pointer ${
                 isHoldingResonance
-                  ? 'bg-cyan-500 text-slate-950 scale-105 shadow-md shadow-cyan-500/30'
-                  : 'btn-press text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50'
+                  ? "bg-cyan-500 text-slate-950 scale-105 shadow-md shadow-cyan-500/30"
+                  : "btn-press text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 border border-rose-200 dark:border-rose-900/50"
               }`}
               title="Hold to build tactile resonance"
             >
-              <Heart className={`h-3.5 w-3.5 ${isHoldingResonance ? 'animate-ping text-slate-950' : 'text-rose-500'}`} />
-              <span>{isHoldingResonance ? 'Holding...' : 'Hold to Resonate'}</span>
+              <Heart
+                className={`h-3.5 w-3.5 ${isHoldingResonance ? "animate-ping text-slate-950" : "text-rose-500"}`}
+              />
+              <span>
+                {isHoldingResonance ? "Holding..." : "Hold to Resonate"}
+              </span>
             </button>
 
             {/* Anchor Moment button */}
@@ -344,13 +413,13 @@ export const MomentInspectionModal: React.FC = () => {
               disabled={isAnchored}
               className={`focus-ring flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium cursor-pointer ${
                 isAnchored
-                  ? 'text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 cursor-default'
-                  : 'btn-press text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5'
+                  ? "text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 cursor-default"
+                  : "btn-press text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5"
               }`}
               title="Anchor moment to prevent expiration"
             >
               <Anchor className="h-3.5 w-3.5 text-amber-500" />
-              <span>{isAnchored ? 'Anchored' : 'Anchor'}</span>
+              <span>{isAnchored ? "Anchored" : "Anchor"}</span>
             </button>
 
             <button
@@ -374,4 +443,3 @@ export const MomentInspectionModal: React.FC = () => {
     </div>
   );
 };
-

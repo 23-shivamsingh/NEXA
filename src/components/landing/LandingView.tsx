@@ -14,11 +14,12 @@ import {
   Layers,
 } from 'lucide-react';
 import { useNexaStore } from '../../store/useNexaStore';
+import { Intent } from '../../types';
 
 export const LandingView: React.FC = () => {
   const { setCurrentView, setSelectedIntent } = useNexaStore();
 
-  const handleEnter = (intent: any = 'ALL') => {
+  const handleEnter = (intent: Intent = 'ALL') => {
     setSelectedIntent(intent);
     setCurrentView('orbit');
   };

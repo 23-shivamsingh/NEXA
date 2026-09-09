@@ -1,16 +1,31 @@
 export type Intent =
-  | 'ALL'
-  | 'CREATE'
-  | 'DISCOVER'
-  | 'CONNECT'
-  | 'LEARN'
-  | 'PLAY'
-  | 'HELP'
-  | 'JUST VIBE';
+  | "ALL"
+  | "CREATE"
+  | "DISCOVER"
+  | "CONNECT"
+  | "LEARN"
+  | "PLAY"
+  | "HELP"
+  | "JUST VIBE";
 
-export type SocialEnergy = 'Quiet' | 'Curious' | 'Social' | 'Creative' | 'Chaotic';
+export interface IntentContract {
+  id: string;
+  label: string;
+  intent: Intent;
+  statement: string;
+  antiExtractionPledge: string;
+  durationMinutes?: number;
+  startedAt?: string;
+}
 
-export type PresenceMode = 'TALK' | 'LISTEN' | 'CREATE' | 'OBSERVE';
+export type SocialEnergy =
+  | "Quiet"
+  | "Curious"
+  | "Social"
+  | "Creative"
+  | "Chaotic";
+
+export type PresenceMode = "TALK" | "LISTEN" | "CREATE" | "OBSERVE";
 
 export interface FrequencyItem {
   id: string;
@@ -52,14 +67,19 @@ export interface SessionStats {
 }
 
 export type EnergyLevel =
-  | 'Collaborative'
-  | 'Reflective'
-  | 'High Energy'
-  | 'Gentle'
-  | 'Exploratory'
-  | 'Deep Focus';
+  | "Collaborative"
+  | "Reflective"
+  | "High Energy"
+  | "Gentle"
+  | "Exploratory"
+  | "Deep Focus";
 
-export type EchoType = 'SAME' | 'FELT THIS' | 'CURIOUS' | 'I CAN HELP' | 'INSPIRED';
+export type EchoType =
+  | "SAME"
+  | "FELT THIS"
+  | "CURIOUS"
+  | "I CAN HELP"
+  | "INSPIRED";
 
 export interface Creator {
   name: string;
@@ -91,7 +111,7 @@ export interface Moment {
   iconName: string;
   createdAt: string;
   isSaved?: boolean;
-  lifecycleStatus?: 'Fresh' | 'Expiring' | 'Anchored';
+  lifecycleStatus?: "Fresh" | "Expiring" | "Anchored";
   anchoredAt?: string;
   primaryFrequency?: string;
 }
@@ -180,16 +200,16 @@ export interface RemixItem {
   originalTitle: string;
   originalCreator: string;
   remixType:
-    | 'Thought → Playlist'
-    | 'Photo → Poem'
-    | 'Playlist → Visual Moodboard'
-    | 'Question → Challenge'
-    | 'Idea → Product Concept'
-    | 'expand_thought'
-    | 'musical_layer'
-    | 'challenge_spin'
-    | 'living_space'
-    | 'format_translation';
+    | "Thought → Playlist"
+    | "Photo → Poem"
+    | "Playlist → Visual Moodboard"
+    | "Question → Challenge"
+    | "Idea → Product Concept"
+    | "expand_thought"
+    | "musical_layer"
+    | "challenge_spin"
+    | "living_space"
+    | "format_translation";
   newTitle: string;
   newDescription: string;
   creator: {
@@ -232,7 +252,7 @@ export interface Quest {
   title: string;
   description: string;
   category?: string;
-  difficulty: 'Gentle' | 'Explorer' | 'Collaborator' | 'Legend';
+  difficulty: "Gentle" | "Explorer" | "Collaborator" | "Legend";
   estimatedTime: string;
   steps: QuestStep[];
   participantsCount: number;
@@ -276,13 +296,13 @@ export interface Memory {
 export interface NotificationItem {
   id: string;
   type:
-    | 'idea_join'
-    | 'answer_wait'
-    | 'remix_used'
-    | 'idea_useful'
-    | 'space_active'
-    | 'memory_created'
-    | 'echo_received';
+    | "idea_join"
+    | "answer_wait"
+    | "remix_used"
+    | "idea_useful"
+    | "space_active"
+    | "memory_created"
+    | "echo_received";
   text: string;
   subtext?: string;
   timestamp: string;
