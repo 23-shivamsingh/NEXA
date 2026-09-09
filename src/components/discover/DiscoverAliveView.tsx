@@ -5,6 +5,7 @@ import {
   Clock,
   Users,
   ArrowRight,
+  ShieldCheck,
 } from 'lucide-react';
 
 const INTENT_BADGES: Record<string, { bg: string; text: string; border: string }> = {
@@ -56,7 +57,7 @@ const getBadgeStyle = (intent: string) => {
 };
 
 export const DiscoverAliveView: React.FC = () => {
-  const { moments, inspectMoment, selectedIntent, inspectingMomentId } = useNexaStore();
+  const { moments, inspectMoment, selectedIntent, inspectingMomentId, activeIntentContract } = useNexaStore();
   const [sortMode, setSortMode] = useState<'momentum' | 'expiring_soon'>('momentum');
 
   const filtered = moments.filter((m) => {
@@ -65,6 +66,12 @@ export const DiscoverAliveView: React.FC = () => {
   });
 
   const sortedMoments = [...filtered].sort((a, b) => {
+    // If user has an active Intent Contract, deterministically surface aligned moments first
+    if (activeIntentContract) {
+      const aMatches = a.intent === activeIntentContract.intent;
+      const bMatches = b.intent === activeIntentContract.intent;
+      if (aMatches !== bMatches) return aMatches ? -1 : 1;
+    }
     if (sortMode === 'expiring_soon') {
       return a.expiresAt.localeCompare(b.expiresAt);
     }
@@ -129,11 +136,19 @@ export const DiscoverAliveView: React.FC = () => {
                 <div className="min-w-0">
                   {/* 1. Category + Timer */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span
-                      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${badge.bg} ${badge.text} ${badge.border}`}
-                    >
-                      {moment.intent}
-                    </span>
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span
+                        className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${badge.bg} ${badge.text} ${badge.border}`}
+                      >
+                        {moment.intent}
+                      </span>
+                      {activeIntentContract && activeIntentContract.intent === moment.intent && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cyan-500/15 text-cyan-800 dark:text-cyan-300 border border-cyan-500/30">
+                          <ShieldCheck className="h-3 w-3" />
+                          <span>Intent Match</span>
+                        </span>
+                      )}
+                    </div>
 
                     <span className="flex items-center gap-1.5 text-xs font-mono font-medium text-slate-700 dark:text-slate-300 shrink-0">
                       <Clock className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
